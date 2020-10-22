@@ -10,4 +10,4 @@ hash = { 'Yes' => 23,
          ' yesterday1 ' => 34,
          ' yesteryear ' => 2014 }
 
-puts(hash.select { |k, v| k =~ /^yes/ })
+puts(hash.select { |k, v| k =~ /^yes/ }.count)
