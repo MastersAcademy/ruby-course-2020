@@ -10,7 +10,7 @@ p hash = {
           ' yesteryear '=> 2014
 }
 
-keys = hash.transform_keys{|k| k.to_s}.keys
+keys = hash.transform_keys(&:to_s).keys
 
 puts "\nAmount of keys, which start with \"yes\""
 p keys.map { |key| key.downcase.match(/^yes/) }.compact.size
