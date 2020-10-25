@@ -8,7 +8,7 @@ p hash = {
            key: 'some value',
           ' yesterday1 '=> 34,
           ' yesteryear '=> 2014
-}
+         }
 
 keys = hash.transform_keys(&:to_s).keys
 
