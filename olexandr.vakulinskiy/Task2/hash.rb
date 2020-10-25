@@ -13,4 +13,4 @@ p hash = {
 keys = hash.transform_keys(&:to_s).keys
 
 puts "\nAmount of keys, which start with \"yes\""
-p keys.map { |key| key.downcase.match(/^yes/) }.compact.size
+p keys.select { |key| key.downcase.match(/^yes/) }.size
