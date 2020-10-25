@@ -7,11 +7,6 @@ array_of_positive_numbers = array.flatten.find_all(&:positive?)
 p array_of_positive_numbers.inject{ |i, sum| i + sum }
 
 # If there is a positive element - display in the console
-array.flatten.each do |i|
-  if i>0
-    puts i
-  end
-end
-
+puts array_of_positive_numbers
 
 
