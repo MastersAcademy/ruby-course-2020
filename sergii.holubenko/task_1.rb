@@ -1,25 +1,17 @@
-arr = [a, b, c]
-a = []
-3.times do
-  arr.push(rand(-10...10))
-end
-b = []
-3.times do
-  arr.push(rand(-10...10))
-end
-c = []
+arr = Array.new(3){Array.new(3){rand(-10..10)}}.flatten
 
-3.times do
-  arr.push(rand(-10...10))
-end
-d = []
+
 arr.each do |i|
-  if i > 0
-    d.push(i)
-    print i
-  end
+  if i.positive?
+    puts i
+    summ_elements += i 
+    end
 end
-print d.sum
+
+
+
+
+
 
 
   
