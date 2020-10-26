@@ -10,11 +10,7 @@ def yes
     ' yesterday1 '=> 34,
     ' yesteryear '=> 2014
   }
-  count = 0
-  hash.each{|k, v| 
-    count +=1 if k.to_s.downcase.index("yes") == 0
-  }
-  p count
+  p  hash.keys.count { |key| key.to_s.downcase.index("yes") == 0 }
 end
 
 yes
