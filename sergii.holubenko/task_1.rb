@@ -1,17 +1,10 @@
 arr = Array.new(3){Array.new(3){rand(-10..10)}}.flatten
-
-
+ i = []
 arr.each do |i|
-  if i.positive?
+     if i.positive?
     puts i
-    summ_elements += i 
-    end
-end
-
-
-
-
-
-
-
-  
+  end
+ end
+arr.reject!{ |x| x < 0}
+summa = arr.inject(0){|res, elem|res+elem} 
+p summa
