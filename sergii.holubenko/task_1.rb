@@ -1,7 +1,7 @@
 arr = Array.new(3) { Array.new(3) { rand(-10..10) } }.flatten
  i = []
 arr.each do |i|
-     if i.positive?
+     puts i if i.positive?
     puts i
   end
  end
