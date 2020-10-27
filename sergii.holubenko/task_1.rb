@@ -6,5 +6,5 @@ arr.each do |i|
   end
  end
 arr.reject! { |x| x < 0 }
-summa = arr.inject(0){|res, elem|res+elem} 
+summa = arr.inject(0) { |res, elem| res + elem } 
 p summa
