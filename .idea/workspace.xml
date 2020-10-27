@@ -25,8 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b617c01b-c7d5-4b1c-8e75-49d782ecc771" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/yaroslav.nazarenko/first/task1/task1.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yaroslav.nazarenko/first/task2/task2.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +69,7 @@
     <configuration name="task1" type="RubyRunConfigurationType" factoryName="Ruby">
       <module name="ruby-course-2020" />
       <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$PROJECT_DIR$/yaroslav.nazarenko/first/task1" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/yaroslav.nazarenko/first/task1" />
       <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
       <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
       <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
@@ -81,7 +80,7 @@
           <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
         </COVERAGE_PATTERN>
       </EXTENSION>
-      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$PROJECT_DIR$/yaroslav.nazarenko/first/task1/task1.rb" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/yaroslav.nazarenko/first/task1/task1.rb" />
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <method v="2" />
     </configuration>
@@ -98,7 +97,8 @@
       <workItem from="1603736616862" duration="2885000" />
       <workItem from="1603787088304" duration="2390000" />
       <workItem from="1603810915572" duration="144000" />
-      <workItem from="1603811068823" duration="772000" />
+      <workItem from="1603811068823" duration="1425000" />
+      <workItem from="1603813183470" duration="907000" />
     </task>
     <servers />
   </component>
@@ -125,22 +125,22 @@
       <screen x="0" y="23" width="1792" height="1043" />
     </state>
     <state x="834" y="387" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1792.1043@0.23.1792.1043" timestamp="1603810538232" />
-    <state width="1400" height="277" key="GridCell.Tab.0.bottom" timestamp="1603811211195">
+    <state width="1400" height="277" key="GridCell.Tab.0.bottom" timestamp="1603813174112">
       <screen x="0" y="23" width="1792" height="1043" />
     </state>
-    <state width="1400" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1043@0.23.1792.1043" timestamp="1603811211195" />
-    <state width="1400" height="277" key="GridCell.Tab.0.center" timestamp="1603811211194">
+    <state width="1400" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1043@0.23.1792.1043" timestamp="1603813174112" />
+    <state width="1400" height="277" key="GridCell.Tab.0.center" timestamp="1603813174112">
       <screen x="0" y="23" width="1792" height="1043" />
     </state>
-    <state width="1400" height="277" key="GridCell.Tab.0.center/0.23.1792.1043@0.23.1792.1043" timestamp="1603811211194" />
-    <state width="1400" height="277" key="GridCell.Tab.0.left" timestamp="1603811211194">
+    <state width="1400" height="277" key="GridCell.Tab.0.center/0.23.1792.1043@0.23.1792.1043" timestamp="1603813174112" />
+    <state width="1400" height="277" key="GridCell.Tab.0.left" timestamp="1603813174112">
       <screen x="0" y="23" width="1792" height="1043" />
     </state>
-    <state width="1400" height="277" key="GridCell.Tab.0.left/0.23.1792.1043@0.23.1792.1043" timestamp="1603811211194" />
-    <state width="1400" height="277" key="GridCell.Tab.0.right" timestamp="1603811211195">
+    <state width="1400" height="277" key="GridCell.Tab.0.left/0.23.1792.1043@0.23.1792.1043" timestamp="1603813174112" />
+    <state width="1400" height="277" key="GridCell.Tab.0.right" timestamp="1603813174112">
       <screen x="0" y="23" width="1792" height="1043" />
     </state>
-    <state width="1400" height="277" key="GridCell.Tab.0.right/0.23.1792.1043@0.23.1792.1043" timestamp="1603811211195" />
+    <state width="1400" height="277" key="GridCell.Tab.0.right/0.23.1792.1043@0.23.1792.1043" timestamp="1603813174112" />
     <state x="860" y="245" key="RollbackChangesDialog" timestamp="1603810934995">
       <screen x="0" y="23" width="1792" height="1043" />
     </state>
@@ -151,6 +151,6 @@
     <state x="747" y="244" key="search.everywhere.popup/0.23.1792.1043@0.23.1792.1043" timestamp="1603737354625" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ruby_course_2020@task1.rcov" NAME="task1 Coverage Results" MODIFIED="1603811211163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/yaroslav.nazarenko/first/task1" />
+    <SUITE FILE_PATH="coverage/ruby_course_2020@task1.rcov" NAME="task1 Coverage Results" MODIFIED="1603813160387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/yaroslav.nazarenko/first/task1" />
   </component>
 </project>
