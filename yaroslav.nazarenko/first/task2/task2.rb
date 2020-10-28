@@ -10,4 +10,4 @@ hash = {
     ' yesteryear '=> 2014
 }
 numOfkeys = hash.keys.count { |key| key.to_s.downcase.index("yes") == 0 }
-puts "Number of keys: #{numOfkeys}"
+puts "Number of keys: #{ numOfkeys }"
