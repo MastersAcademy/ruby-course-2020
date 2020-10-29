@@ -1,5 +1,4 @@
 class Tamagochi
-
   def initialize(health = 90, hunger = 0, thirst = 0)
     @health = health
     @hunger = hunger
@@ -82,8 +81,9 @@ loop do
     pet.eat
   when 'HYDRATE'
     pet.drink
-  else puts 'Your command is incorrect.'\
-       ' Try to use one of these: rules, state, play, feed, hydrate.'
+  else
+    puts 'Your command is incorrect.'\
+         ' Try to use one of these: rules, state, play, feed, hydrate.'
   end
   break if pet.instance_variable_get(:@health).eql? 0
 

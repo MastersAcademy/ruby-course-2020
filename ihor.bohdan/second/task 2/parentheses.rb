@@ -1,9 +1,8 @@
 class String
-
   def valid?
     return true if empty?
 
-    substitute = gsub(/\(\)|\[\]|\{\}|\<\>/,"")
+    substitute = gsub(/\(\)|\[\]|\{\}|\<\>/, '')
     return false if substitute == self
 
     substitute.valid?
