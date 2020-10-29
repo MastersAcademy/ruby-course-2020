@@ -32,7 +32,7 @@ class Pet
     @health = attribute_control(@health + 50)
   end
 
-  def give_pussy
+  def punish
     @health = attribute_control(@health - 30)
     @eat = attribute_control (@eat - 20)
     @stamina = attribute_control(@stamina - 10)
@@ -80,7 +80,7 @@ end
 pet = Pet.new('Kesha', 'parrot')
 puts "#{pet.say}. ya #{pet.get_pet}"
 pet.eat
-pet.give_pussy
+pet.punish
 pet.walk
 pet.eat
 pet.sleep
