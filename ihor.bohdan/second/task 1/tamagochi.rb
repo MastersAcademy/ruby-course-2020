@@ -63,11 +63,11 @@ class Tamagochi
     puts "Stop shoving food/drinks into your pet, it's full, play with it instead."
   end
 
+  private
+
   def start_error
     puts 'Your command is incorrect. Try to use one of these: rules, state, play, feed, hydrate.'
   end
-
-  private
 
   def death_check
     death unless @hunger <= 90 && @thirst <= 90
