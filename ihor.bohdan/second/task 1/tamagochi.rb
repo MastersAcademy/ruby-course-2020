@@ -1,8 +1,23 @@
 class Tamagochi
+  attr_accessor :health
+
+  NAMES = %w[rules state play feed hydrate].freeze
+
   def initialize(health = 90, hunger = 0, thirst = 0)
     @health = health
     @hunger = hunger
     @thirst = thirst
+  end
+
+  def start
+    loop do
+      puts 'What do you want to do with your pet?'
+      action = gets.chomp.downcase
+      NAMES.include?(action) ? send(action) : start_error
+      break if @health.eql? 0
+
+      state
+    end
   end
 
   def rules
@@ -23,14 +38,14 @@ class Tamagochi
     death_check
   end
 
-  def eat
+  def feed
     @health += 10
     @hunger -= 30
     puts "You've fed your pet."
     fullness_check
   end
 
-  def drink
+  def hydrate
     @health += 5
     @thirst -= 30
     puts "You've hydrated your pet."
@@ -46,6 +61,10 @@ class Tamagochi
 
   def full
     puts "Stop shoving food/drinks into your pet, it's full, play with it instead."
+  end
+
+  def start_error
+    puts 'Your command is incorrect. Try to use one of these: rules, state, play, feed, hydrate.'
   end
 
   private
@@ -66,26 +85,4 @@ class Tamagochi
 end
 
 pet = Tamagochi.new
-
-loop do
-  puts 'What do you want to do with your pet?'
-  action = gets.chomp.upcase
-  case action
-  when 'RULES'
-    pet.rules
-  when 'STATE'
-    pet.state
-  when 'PLAY'
-    pet.play
-  when 'FEED'
-    pet.eat
-  when 'HYDRATE'
-    pet.drink
-  else
-    puts 'Your command is incorrect.'\
-         ' Try to use one of these: rules, state, play, feed, hydrate.'
-  end
-  break if pet.instance_variable_get(:@health).eql? 0
-
-  pet.state
-end
+pet.start
