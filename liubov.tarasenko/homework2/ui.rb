@@ -44,7 +44,7 @@ class Ui
 
   def enter_command
     puts 'choose a command, please: '.green
-    puts COMMANDS
+    puts COMMANDS    
     command = gets.strip.downcase
   end
 end

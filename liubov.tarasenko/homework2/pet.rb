@@ -61,7 +61,7 @@ class Dog
   end
 
   def is_dead?   
-    @feed_level == 0 || @drink_level == 0
+    @feed_level == 0 || @drink_level == 0 || @energy_level == 0
   end
 
   private
@@ -80,6 +80,10 @@ class Dog
     @drink_level == 1
   end
 
+  def has_not_energy?
+    @energy_level == 1
+  end
+
   def need_walk?
     @wanna_walk
   end
@@ -88,6 +92,7 @@ class Dog
     puts 'I`m so  hungry!'.red if is_hungry?
     puts 'I`m so thirsty!'.red if is_thirsty?
     puts 'I need to walk!'.red if need_walk?
+    puts 'I need to sleep!'.red if has_not_energy?
   end
 
 end
