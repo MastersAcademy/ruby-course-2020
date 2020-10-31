@@ -1,7 +1,6 @@
 class Tamagochi
-  attr_accessor :health
 
-  NAMES = %w[rules state play feed hydrate].freeze
+  ALLOWED_ACTIONS = %w[rules state play feed hydrate].freeze
 
   def initialize(health = 90, hunger = 0, thirst = 0)
     @health = health
@@ -13,7 +12,7 @@ class Tamagochi
     loop do
       puts 'What do you want to do with your pet?'
       action = gets.chomp.downcase
-      NAMES.include?(action) ? send(action) : start_error
+      ALLOWED_ACTIONS.include?(action) ? send(action) : start_error
       break if @health.eql? 0
 
       state
