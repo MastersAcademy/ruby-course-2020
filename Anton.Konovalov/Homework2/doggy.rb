@@ -175,3 +175,4 @@ end
 puts 'Hello, name your pet'
 name = gets.chomp
 doggy = Doggy.new(name)
+
