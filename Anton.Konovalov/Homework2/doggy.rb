@@ -1,8 +1,6 @@
 class Doggy
 
   def initialize(name)
-    puts 'Hello, name your pet'
-    name = gets.chomp
     @name = name
     @health = 70
     @mood = 70
@@ -174,4 +172,6 @@ class Doggy
   end
 end
 
-doggy = Doggy.new('name')
+puts 'Hello, name your pet'
+name = gets.chomp
+doggy = Doggy.new(name)

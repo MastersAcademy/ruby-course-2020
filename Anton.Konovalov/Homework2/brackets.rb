@@ -1,21 +1,20 @@
 class String
   def valid?
-    if size.odd?
-      return false
-    end
-      equiv = {'}' => '{', ']' => '[', ')' => '(', '>' => '<' }
-      array = split('')
-    while array.any?
-      if equiv[array.pop] == array.shift
-        next
+    mirrored = { "[" => "]", "{" => "}", "(" => ")" }
+    open_brackets = Array.new
+    split_array = split("")
+    split_array.each do |bracket|
+      if bracket.match(/[\[|\{|\(]/) then open_brackets.push(bracket)
+      elsif bracket.match(/[\]|\}|\)]/)
+        return false if mirrored[open_brackets.pop] != bracket
       end
-      return false
     end
-    true
+    open_brackets.empty?
   end
 end
 
 # for example
-puts "((}}}".valid?
-puts "()".valid?
-puts "[{}]".valid?
+p "()[]{}".valid?
+p "((()))".valid?
+p "(({]]]".valid?
+

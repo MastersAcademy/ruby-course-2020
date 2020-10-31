@@ -17,3 +17,4 @@ if you’ve forgotten something - **help** will display a list of commands and a
 Watch the pet’s vitals so he doesn’t run away from you.
 
 Enjoyable game!)
+
