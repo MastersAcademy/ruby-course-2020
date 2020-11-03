@@ -2,7 +2,7 @@ require_relative 'pet'
 require_relative 'console_beauty'
 
 class Ui
-  COMMANDS = %w[feed play water walk let_sleep status]
+  COMMANDS = %w[feed play water walk let_sleep status].freeze
   def start
     init_dog
     
