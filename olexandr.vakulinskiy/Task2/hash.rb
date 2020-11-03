@@ -8,9 +8,9 @@ p hash = {
            key: 'some value',
           ' yesterday1 '=> 34,
           ' yesteryear '=> 2014
-}
+         }
 
-keys = hash.transform_keys{|k| k.to_s}.keys
+keys = hash.transform_keys(&:to_s).keys
 
-puts "\nAmount of keys, which start with \"yes\""
-p keys.map{|key|  key.downcase.match(/^yes/)}.compact.size
+puts "Amount of keys, which start with \"yes\""
+p keys.select { |key| key.downcase.match(/^yes/) }.size
