@@ -1,7 +1,7 @@
 class Tamagochi
   #PET_SELECTION = ['cat', 'dog', 'dragon']
 
-  def initialize ( pet,name, color)
+  def initialize ( pet,name, color )
     @name = name
     @color = color
     @pet = pet
@@ -20,9 +20,9 @@ class Tamagochi
        else
          @joy = joy + 20
        end
-      p "Your pets play"
+      puts "Your pets play"
     else
-      p "Your pets no played"
+      puts "Your pets no played"
     end
   end
 
@@ -36,7 +36,7 @@ class Tamagochi
      else
       @joy = joy + 5
      end
-    p "Pet eating"
+    puts "Pet eating"
   end
 
   def sleep
@@ -52,11 +52,11 @@ class Tamagochi
   def say
     case @pet
     when 'cat'
-      p "Myav - myav"
+      puts "Myav - myav"
     when  'dog'
-      p "Gav - gav"
+      puts "Gav - gav"
     when 'dragon'
-      p "AaaaRrrrrrrrrr"
+      puts "AaaaRrrrrrrrrr"
     end
 
   end
@@ -67,20 +67,20 @@ class Tamagochi
   end
 
   def pet_info
-    puts "Info your pets".center(50)
-    puts "Name - #{name}, pet - #{@pet}, color - #{@color}"
-    puts "Satieti = #{satiety}"
-    puts "Stamina = #{stamina}"
-    puts "Joy = #{joy}"
+    pet_info=<<-TEXT
+    Info your pets
+    Name - #{name}, pet - #{@pet}, color - #{@color}
+    Satieti = #{satiety}
+    Stamina = #{stamina}
+    Joy = #{joy}
     helth_pet
-  end
+  TEXT
+    puts pet_info
+    end
 
   private
-  attr_accessor :satiety
+  attr_accessor :satiety, :stamina, :helth, :joy
   attr_reader :name
-  attr_accessor :stamina
-  attr_accessor :helth
-  attr_accessor :joy
 
 end
 
@@ -88,8 +88,4 @@ sensey = Tamagochi.new("cat", "Sensey", "gray")
 sensey.play
 sensey.say
 sensey.pet_info
-
-
-
-
 
