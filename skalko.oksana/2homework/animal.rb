@@ -67,13 +67,13 @@ class Raccoon
   end
 end
 
-liittle_raccoon = Raccoon.new('Eli')
-p liittle_raccoon
-liittle_raccoon.eat
-liittle_raccoon.walk
-liittle_raccoon.walk
-liittle_raccoon.walk
-liittle_raccoon.walk
-liittle_raccoon.bathing
-liittle_raccoon.sleep
-liittle_raccoon.result
+little_raccoon = Raccoon.new('Eli')
+p little_raccoon
+little_raccoon.eat
+little_raccoon.walk
+little_raccoon.walk
+little_raccoon.walk
+little_raccoon.walk
+little_raccoon.bathing
+little_raccoon.sleep
+little_raccoon.result
