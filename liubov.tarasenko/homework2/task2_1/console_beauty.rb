@@ -1,4 +1,3 @@
-
 class String
   # colorization
   def colorize(color_code)
