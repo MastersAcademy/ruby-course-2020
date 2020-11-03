@@ -21,23 +21,25 @@ class Tamagotchi
     elsif  @fatigue >=7
       @health -= 2
     end
-
   end
+
   def feed
     check_health
     @hunger -= 1
   end
+
   def drink
     check_health
     @thirst -= 1
   end
+
   def play
     check_health
     @fatigue += 2
     @hunger += 1
     @thirst += 1
-
   end
+
   def sleep
     check_health
     @fatigue -= 1
@@ -61,8 +63,8 @@ Hunger: #{hunger} points.
 Thirst: #{thirst} points.
 Fatigue: #{fatigue} points."
   end
-
 end
+
 puts "Lets pick up a name for your new pet. Please enter a name"
 name = gets.chomp
 pet = Tamagotchi.new(name)
