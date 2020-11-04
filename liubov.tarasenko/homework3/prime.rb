@@ -15,8 +15,7 @@ class PrimeMatrix
 
   def calculate
     all = prime_arr
-    prime_matrix = Array.new(all.size) { all = all.rotate(1) }
-    prime_matrix = prime_matrix.rotate(-1)
+    prime_matrix = Array.new(all.size) { |i| all.rotate(i) }
     prime_matrix.map { |el| el.join(" ") }
   end
 
