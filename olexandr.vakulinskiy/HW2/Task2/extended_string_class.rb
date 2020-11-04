@@ -2,8 +2,8 @@ class String
   def valid?
     brackets = { "(" => ")", "<" => ">", "{" => "}", "[" => "]" }
     brackets_stack = []
-    self.each_char do
-      |x| brackets_stack.push(x) if brackets.keys.include?(x)
+    each_char do |x|
+      brackets_stack.push(x) if brackets.keys.include?(x)
       if brackets.values.include?(x)
         if brackets[brackets_stack.last] == x
           brackets_stack.pop
