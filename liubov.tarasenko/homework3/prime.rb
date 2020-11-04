@@ -7,7 +7,6 @@ class PrimeMatrix
     base = [2,3,5,7]    
     rest = (2..@max).to_a.reject {|x| base.any? {|b| x % b == 0 } }
     @all = base + rest
-    #p @all
   end
 
   def print_arr
@@ -17,8 +16,7 @@ class PrimeMatrix
   def calculate
     prime_arr
     n = @all.size
-    #prime_matrix = Array.new(n) { Array.new( @all) }
-    prime_matrix = Array.new(n) { @all; @all = @all.rotate(1) }
+    prime_matrix = Array.new(n) {@all = @all.rotate(1) }
     prime_matrix = prime_matrix.rotate(-1)
     prime_matrix.map{|el| el.join(" ")}
   end
