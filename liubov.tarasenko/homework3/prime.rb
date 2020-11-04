@@ -5,8 +5,8 @@ class PrimeMatrix
   
   def prime_arr
     base = [2,3,5,7]    
-    rest = (2..@max).to_a.reject {|x| base.any? {|b| x % b == 0 } }
-    @all = base + rest
+    rest = (2..@max).to_a.reject { |x| base.any? { |b| x % b == 0 } }
+    base + rest
   end
 
   def print_arr
@@ -14,11 +14,10 @@ class PrimeMatrix
   end
 
   def calculate
-    prime_arr
-    n = @all.size
-    prime_matrix = Array.new(n) {@all = @all.rotate(1) }
+    all = prime_arr
+    prime_matrix = Array.new(all.size) { all = all.rotate(1) }
     prime_matrix = prime_matrix.rotate(-1)
-    prime_matrix.map{|el| el.join(" ")}
+    prime_matrix.map { |el| el.join(" ") }
   end
 
 end
