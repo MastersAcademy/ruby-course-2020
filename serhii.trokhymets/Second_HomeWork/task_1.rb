@@ -58,7 +58,6 @@ class Tamagochi
     when 'dragon'
       puts "AaaaRrrrrrrrrr"
     end
-
   end
 
   def helth_pet
@@ -88,5 +87,4 @@ sensey = Tamagochi.new("cat", "Sensey", "gray")
 sensey.play
 sensey.say
 sensey.pet_info
-
 
