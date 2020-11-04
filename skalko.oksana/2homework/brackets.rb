@@ -10,7 +10,6 @@ class String
           result = true
         elsif hash[brack[0]].eql? brack[1]
           brack.shift && brack.shift
-          p brack
           result = true
         else
           result = false
