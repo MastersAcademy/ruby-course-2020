@@ -24,36 +24,38 @@ class Tamagotchi
     end
   end
 
-  def feed
+  def feed(check)
     check_health
     @hunger -= 1
+    puts 'You fed your pet.' if check == false
   end
 
-  def drink
+  def drink(check)
     check_health
     @thirst -= 1
+    puts 'You gave some water to your pet.' if check == false
   end
 
-  def play
+  def play(check)
     check_health
     @fatigue += 2
     @hunger += 1
     @thirst += 1
+    puts 'You played different games with your pet.' if check == false
   end
 
-  def sleep
+  def sleep(check)
     check_health
     @fatigue -= 1
     @hunger += 2
     @thirst += 2
+    puts 'Your pet is sleeping now.' if check == false
   end
 
-  def dead?(action_with_pet)
+  def dead?
     if @health <= 0
+      puts 'Sorry, your pet is dead =('
       true
-    else
-      puts action_with_pet
-      false
     end
   end
 
@@ -73,13 +75,9 @@ puts 'Lets pick up a name for your new pet. Please enter a name'
 name = gets.chomp
 pet = Tamagotchi.new(name)
 
-def news(news_is_sad)
-  puts 'Sorry, your pet is dead =(' if news_is_sad
-end
-
 puts "Now you can have fun with your #{name}!"
 loop do
-  break if pet.dead?('')
+  break if pet.dead?
   pet.characteristics
   puts '-' * 60
   puts(<<-MENU)
@@ -94,17 +92,13 @@ loop do
 
   case input
   when 'feed'
-    pet.feed
-    news(pet.dead?('You fed your pet.'))
+    pet.feed(pet.dead?)
   when 'drink'
-    pet.drink
-    news(pet.dead?('You gave some water to your pet.'))
+    pet.drink(pet.dead?)
   when 'play'
-    pet.play
-    news(pet.dead?('You played different games with your pet.'))
+    pet.play(pet.dead?)
   when 'sleep'
-    pet.sleep
-    news(pet.dead?('Your pet is sleeping now'))
+    pet.sleep(pet.dead?)
   when 'exit'
     break
   else
