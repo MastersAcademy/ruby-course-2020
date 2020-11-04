@@ -1,5 +1,4 @@
 class Tamagotchi
-
   attr_accessor :name, :health, :hunger, :thirst, :fatigue
 
   def initialize(name)
@@ -11,14 +10,16 @@ class Tamagotchi
   end
 
   def check_health
-    if @hunger == 0 || @thirst == 0
+    if @hunger.zero? || @thirst.zero?
       @health += 1
     elsif @hunger >= 7 || @thirst >= 7
       @health -= 1
     end
-    if @fatigue == 10
+
+    case @fatigue
+    when 10
       @health = 0
-    elsif  @fatigue >=7
+    when 7...10
       @health -= 2
     end
   end
@@ -47,7 +48,7 @@ class Tamagotchi
     @thirst += 2
   end
 
-  def is_dead?(action_with_pet)
+  def dead?(action_with_pet)
     if @health <= 0
       true
     else
@@ -55,56 +56,59 @@ class Tamagotchi
       false
     end
   end
-  def get_characteristics
-    puts "PET CHARACTERISTICS
-Name: #{name}.
-Health: #{health} points.
-Hunger: #{hunger} points.
-Thirst: #{thirst} points.
-Fatigue: #{fatigue} points."
+
+  def characteristics
+    puts(<<-PET_CHARACTERISTICS)
+      PET CHARACTERISTICS
+      Name: #{name}.
+      Health: #{health} points.
+      Hunger: #{hunger} points.
+      Thirst: #{thirst} points.
+      Fatigue: #{fatigue} points.
+    PET_CHARACTERISTICS
   end
 end
 
-puts "Lets pick up a name for your new pet. Please enter a name"
+puts 'Lets pick up a name for your new pet. Please enter a name'
 name = gets.chomp
 pet = Tamagotchi.new(name)
 
-def get_news(news_is_sad)
-  news_is_sad
-  if news_is_sad
-    puts "Sorry, your pet is dead =("
-  end
+def news(news_is_sad)
+  puts 'Sorry, your pet is dead =(' if news_is_sad
 end
+
 puts "Now you can have fun with your #{name}!"
 loop do
-  break if pet.is_dead?("")
-  pet.get_characteristics
+  break if pet.dead?('')
+  pet.characteristics
   puts '-' * 60
-  puts "You can feed your #{name} (enter 'feed').
-You can get some water to your #{name} (enter 'drink').
-You can play with your #{name} (enter play).
-You can send your #{name} to sleep (enter sleep).
-If you want to finish the program enter 'exit'"
+  puts(<<-MENU)
+    You can feed your #{name} (enter 'feed').
+    You can get some water to your #{name} (enter 'drink').
+    You can play with your #{name} (enter play).
+    You can send your #{name} to sleep (enter sleep).
+    If you want to finish the program enter 'exit'
+  MENU
   puts '-' * 60
   input = gets.chomp.downcase
 
   case input
-  when "feed"
+  when 'feed'
     pet.feed
-    get_news(pet.is_dead?("You fed your pet.".chomp))
-  when "drink"
+    news(pet.dead?('You fed your pet.'))
+  when 'drink'
     pet.drink
-    get_news(pet.is_dead?("You gave some water to your pet."))
-  when "play"
+    news(pet.dead?('You gave some water to your pet.'))
+  when 'play'
     pet.play
-    get_news(pet.is_dead?("You played different games with your pet."))
-  when "sleep"
+    news(pet.dead?('You played different games with your pet.'))
+  when 'sleep'
     pet.sleep
-    get_news(pet.is_dead?("Your pet is sleeping now"))
-  when "exit"
+    news(pet.dead?('Your pet is sleeping now'))
+  when 'exit'
     break
   else
-    puts "That is not valid command!"
+    puts 'That is not valid command!'
   end
 end
 
