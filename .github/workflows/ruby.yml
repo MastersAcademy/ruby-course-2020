@@ -1,2 +1,12 @@
-- name: Rubocop checks
-  uses: gimenete/rubocop-action@1.0
+name: CI
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Rubocop checks
+        uses: luizfonseca/github-actions-rubocop@1.5.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
