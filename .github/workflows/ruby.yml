@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Rubocop checks
     - uses: actions/checkout@v2
-    - uses: fregante/setup-git-user@v1
-    - uses: gimenete/rubocop-action@1.0
+    - name: Rubocop checks
+      uses: gimenete/rubocop-action@1.0
+    - uses: fregante/setup-git-user@v1 
