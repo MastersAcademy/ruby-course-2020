@@ -5,7 +5,7 @@ class PrimeMatrix
   
   def prime_arr
     base = [2,3,5,7].select { |x| x <= @max }    
-    rest = (2..@max).to_a.reject { |x| base.any? { |b| x % b == 0 } }
+    rest = (2..@max).reject { |x| base.any? { |b| x % b == 0 } }
     base + rest
   end
 
