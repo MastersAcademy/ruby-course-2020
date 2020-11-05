@@ -10,15 +10,13 @@ class PrimeMatrix
   end
 
   def print_arr
-    puts calculate
+    puts calculate.map { |el| el.join(" ") }
   end
 
   def calculate
     all = prime_arr
     prime_matrix = Array.new(all.size) { |i| all.rotate(i) }
-    prime_matrix.map { |el| el.join(" ") }
   end
-
 end
 
 m = PrimeMatrix.new(100)
