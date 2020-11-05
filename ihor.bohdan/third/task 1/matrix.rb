@@ -1,4 +1,4 @@
-class Numbers
+class Matrix
   def initialize(max)
     @max = max
   end
@@ -22,4 +22,3 @@ class Numbers
     @prime_array[0..-2].each { p @prime_array << @prime_array.shift }
   end
 end
-
