@@ -16,7 +16,7 @@ Metrics/BlockLength:
 Documentation:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 150
   Exclude:
     - db/seeds/**/*.rb
@@ -51,7 +51,7 @@ Style/ClassAndModuleChildren:
 Lint/ParenthesesAsGroupedExpression:
   Exclude:
     - spec/factories/**/*.rb
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedHashRocketStyle:
     - key
     - table
