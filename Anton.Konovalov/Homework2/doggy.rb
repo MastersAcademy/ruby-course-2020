@@ -1,5 +1,4 @@
 class Doggy
-
   def initialize(name)
     @name = name
     @health = 70
@@ -59,7 +58,7 @@ class Doggy
     puts "Let’s get #{@name} cleaned up!"
     @health += 10
     @hunger += 5
-    @mood +=5
+    @mood += 5
     @dirty = 0
     user_interaction
   end
@@ -116,12 +115,10 @@ class Doggy
     when 2
       puts "#{@name} walked down the street, met another dog, and they dressed each other up"
       @mood -= 5
-      @tiredness += 5
     when 3
       puts "The owner was away all day. When he came, #{@name} was very happy and wagged his tail"
       @mood += 35
       @hunger += 35
-      @dirty += 15
     end
     user_interaction
   end
@@ -130,7 +127,7 @@ class Doggy
 
   def user_interaction
     time_passes
-    puts "Select the type of interaction with your pet:"
+    puts 'Select the type of interaction with your pet:'
     action = gets.chomp
     action_router(action)
   end
@@ -155,27 +152,9 @@ class Doggy
       @mood -= 5
       @health -= 3
     end
-
-    if @dirty > 50
-      puts "#{@name} is dirty, it’s time to bathe!"
-      @health -= 5
-    end
-
-    if @mood < 30
-      puts "#{@name} is bored, play with him"
-    end
-
-    if @hunger > 90 || @health < 20
-      puts "#{@name} is running away from home because you mistreated him"
-      exit
-    end
   end
 end
 
 puts 'Hello, name your pet'
 name = gets.chomp
 Doggy.new(name)
-
-
-
-

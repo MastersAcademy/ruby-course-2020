@@ -1,5 +1,7 @@
 class String
   def valid?
+    puts
+    puts self
     open_brackets = []
     mirrored = { '{' => '}', '[' => ']', '(' => ')' }
     self.each_char do |b|
@@ -11,10 +13,9 @@ class String
 end
 
 # for example
-p "<()[]{}>".valid?
-p "((()))".valid?
-p "(({]]]".valid?
-p "<<<>>>".valid?
-p "<<>>".valid?
-
+p '<()[]{}>'.valid?
+p '((()))'.valid?
+p '(({]]]'.valid?
+p '<<<>>>'.valid?
+p '<<>>'.valid?
 
