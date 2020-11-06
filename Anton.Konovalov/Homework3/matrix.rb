@@ -18,3 +18,4 @@ end
 
 a = Matrix.new(10)
 a.find_primes
+
