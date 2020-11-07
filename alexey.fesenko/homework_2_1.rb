@@ -1,5 +1,4 @@
 class Tamagochi
-
   MALE_NAMES = %w[Boy Bill George Harry].freeze
   FEMALE_NAMES = %w[Girl Bonnie Ginger Georgetta].freeze
 
