@@ -45,7 +45,6 @@ class Tamagochi
 end
 
 class Pet < Tamagochi
-
   def working
     if @energy.positive?
       @energy -= 1
@@ -75,7 +74,7 @@ class Pet < Tamagochi
   end
 
   def info
-    p "Name: #{@name}, Gender: #{@gender}, Satiety: #{@food}, Joy: #{@joy}, Energy: #{@energy}" 
+    p "Name: #{@name}, Gender: #{@gender}, Satiety: #{@food}, Joy: #{@joy}, Energy: #{@energy}"
   end
 end
 
