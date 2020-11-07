@@ -5,10 +5,10 @@ class String
     result = true
     if brack.size.even?
       while brack.size != 0
-        if hash[brack[0]].eql? brack[-1]
+        if hash[brack[0]].eql?(brack[-1])
           brack.shift && brack.pop
           result = true
-        elsif hash[brack[0]].eql? brack[1]
+        elsif hash[brack[0]].eql?(brack[1])
           brack.shift && brack.shift
           result = true
         else

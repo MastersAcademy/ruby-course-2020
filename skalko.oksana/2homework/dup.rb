@@ -6,7 +6,7 @@ def dup(arr)
     interim_result = []
     interim_result << array.shift
     while array.size != 0
-      if interim_result[-1].eql? array[0]
+      if interim_result[-1].eql?(array[0])
         array.shift
       else
         interim_result << array.shift
