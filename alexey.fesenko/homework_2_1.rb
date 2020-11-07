@@ -16,7 +16,7 @@ class Tamagochi
     @energy = rand(0..5)
     @gender = %w[male female].sample
     
-    if @gender == "male"
+    if @gender == 'male'
       @name = MALE_NAMES.sample
     else
       @name = FEMALE_NAMES.sample
@@ -39,7 +39,7 @@ class Tamagochi
     elsif @food >= 5
       p "#{@name} already ate enough!"
     else
-      @food = @food - 1
+      @food -= 1
     end
   end
 end
@@ -47,20 +47,20 @@ end
 class Pet < Tamagochi
 
   def working
-    if @energy > 0
-      @energy = @energy - 1
+    if @energy.positive?
+      @energy -= 1
     else
       p "#{@name} needs a rest!"
     end
 
-    if @food > 0
-      @food = @food - 1
+    if @food.positive? 0
+      @food -= 1
     else
       p "#{@name} needs to eat!"
     end
 
-    if @joy > 0
-      @joy = @joy - 1
+    if @joy.positive?
+      @joy -= 1
     else
       p "#{@name} needs to play!"
     end
@@ -70,7 +70,7 @@ class Pet < Tamagochi
     if @energy >= 5
       p "#{@name} rest enough"
     else
-      @energy = @energy + 1
+      @energy += 1
     end
   end
 
