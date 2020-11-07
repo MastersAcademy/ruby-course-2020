@@ -74,7 +74,7 @@ class Pet < Tamagochi
     end
   end
 
-  def info # pet info
+  def info # pet information
     p "Name: #{@name}, Gender: #{@gender}, Satiety: #{@food}, Joy: #{@joy}, Energy: #{@energy}" 
   end
 end
