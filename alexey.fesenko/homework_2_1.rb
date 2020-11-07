@@ -10,7 +10,7 @@ class Tamagochi
     @energy = energy
   end
 
-  def rand_pet 
+  def rand_pet
     @joy = rand(0..5)
     @food = rand(0..5)
     @energy = rand(0..5)
@@ -23,17 +23,17 @@ class Tamagochi
     end
   end
 
-  def play 
+  def play
     if @joy < 5
       @joy += 1
     elsif @joy >= 5
       p "#{@name} already happy!"
     else
-      @joy = @joy - 1
+      @joy -= 1
     end
   end
 
-  def feed 
+  def feed
     if @food < 5
       @food += 1
     elsif @food >= 5
@@ -46,7 +46,7 @@ end
 
 class Pet < Tamagochi
 
-  def working 
+  def working
     if @energy > 0
       @energy = @energy - 1
     else
@@ -66,7 +66,7 @@ class Pet < Tamagochi
     end
   end
 
-  def recreation 
+  def recreation
     if @energy >= 5
       p "#{@name} rest enough"
     else
@@ -74,7 +74,7 @@ class Pet < Tamagochi
     end
   end
 
-  def info 
+  def info
     p "Name: #{@name}, Gender: #{@gender}, Satiety: #{@food}, Joy: #{@joy}, Energy: #{@energy}" 
   end
 end
