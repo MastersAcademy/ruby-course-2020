@@ -5,11 +5,11 @@ class String
     end
 
     iteration = self.length / 2
-    i = 0
-    ii = self.length
+    index = 0
+    index_last = self.length
 
     while iteration != 0
-      start_symbol = self[i]
+      start_symbol = self[index]
       if start_symbol == '('
         stop_symbol = ')'
       elsif start_symbol == '{'
@@ -21,19 +21,19 @@ class String
       else
         return false
       end
-      stop_symbolck = self[ii - 1]
-      if stop_symbol != stop_symbolck
+      stop_symbolcheck = self[index_last - 1]
+      if stop_symbol != stop_symbolcheck
         return false
       end
-      iteration = iteration - 1
-      i = i + 1
-      ii = ii - 1
+      iteration -= 1
+      index += 1
+      index_last -= 1
     end
     true
   end
 end
 
-#p "({[]})".valid?
-#p "{}()[]".valid?
-#p "{{}{{{}".valid?
-#p "<({[]})>".valid?
+p "({[]})".valid?
+p "{}()[]".valid?
+p "{{}{{{}".valid?
+p "<({[]})>".valid?

@@ -10,16 +10,12 @@ class Tamagochi
     @gender = gender
     @energy = energy
   end
-  def rand_pet # рандомно назначить атрибуты питомца
+
+  def rand_pet # randomize pets attributes
     @joy = rand (0..5)
     @food = rand (0..5)
     @energy = rand (0..5)
-    gender = rand (0..5)
-    if gender >= 3
-      @gender = 'male'
-    else
-      @gender = 'female'
-    end
+    @gender = %w[male female].sample
     if @gender == 'male'
       @name = MALE_NAMES.sample
     else
@@ -27,7 +23,7 @@ class Tamagochi
     end
   end
 
-  def play # играть - восстанавливает радость
+  def play # recover joy
     if @joy < 5
       @joy += 1
     elsif @joy >= 5
@@ -37,7 +33,7 @@ class Tamagochi
     end
   end
 
-  def feed # покормить - восстанавливает еду
+  def feed # recover food
     if @food < 5
       @food += 1
     elsif @food >= 5
@@ -46,12 +42,11 @@ class Tamagochi
       @food = @food - 1
     end
   end
-
 end
 
 class Pet < Tamagochi
 
-  def working # заставить питомца работать
+  def working # make pet to work
     if @energy > 0
       @energy = @energy - 1
     else
@@ -71,7 +66,7 @@ class Pet < Tamagochi
     end
   end
 
-  def recreation # восстановление энергии
+  def recreation # energy recovery
     if @energy >= 5
       p "#{@name} rest enough"
     else
@@ -79,7 +74,7 @@ class Pet < Tamagochi
     end
   end
 
-  def info # информация о питомце
+  def info # pet info
     p "Name: #{@name}, Gender: #{@gender}, Satiety: #{@food}, Joy: #{@joy}, Energy: #{@energy}"
   end
 
