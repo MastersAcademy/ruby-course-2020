@@ -10,29 +10,30 @@ class Tamagochi
     @energy = energy
   end
 
-  def rand_pet # randomize pets attributes
-    @joy = rand (0..5)
-    @food = rand (0..5)
-    @energy = rand (0..5)
+  def rand_pet 
+    @joy = rand(0..5)
+    @food = rand(0..5)
+    @energy = rand(0..5)
     @gender = %w[male female].sample
-    if @gender == 'male'
+    
+    if @gender == "male"
       @name = MALE_NAMES.sample
     else
       @name = FEMALE_NAMES.sample
     end
   end
 
-  def play # recover joy
+  def play 
     if @joy < 5
       @joy += 1
     elsif @joy >= 5
       p "#{@name} already happy!"
-      else
+    else
       @joy = @joy - 1
     end
   end
 
-  def feed # recover food
+  def feed 
     if @food < 5
       @food += 1
     elsif @food >= 5
@@ -45,7 +46,7 @@ end
 
 class Pet < Tamagochi
 
-  def working # make pet to work
+  def working 
     if @energy > 0
       @energy = @energy - 1
     else
@@ -65,7 +66,7 @@ class Pet < Tamagochi
     end
   end
 
-  def recreation # energy recovery
+  def recreation 
     if @energy >= 5
       p "#{@name} rest enough"
     else
@@ -73,9 +74,8 @@ class Pet < Tamagochi
     end
   end
 
-  def info # pet information
+  def info 
     p "Name: #{@name}, Gender: #{@gender}, Satiety: #{@food}, Joy: #{@joy}, Energy: #{@energy}" 
   end
 end
 
-#cat = Pet.new(5,5,5,'George', 'male')
