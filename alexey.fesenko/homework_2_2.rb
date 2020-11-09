@@ -1,9 +1,9 @@
 class String
+
   def valid?
     if self.length.odd?
       return false
     end
-
     iteration = self.length / 2
     index = 0
     index_last = self.length
@@ -33,7 +33,7 @@ class String
   end
 end
 
-p "({[]})".valid?
-p "{}()[]".valid?
-p "{{}{{{}".valid?
-p "<({[]})>".valid?
+#p "({[]})".valid?
+#p "{}()[]".valid?
+#p "{{}{{{}".valid?
+#p "<({[]})>".valid?
