@@ -77,16 +77,16 @@ Press Enter to do nothing..."
     end
 
   if pet.health <= 0
-      pet.health = 0
-        print "#{name} died of disease !!! Game Over!"
+     pet.health = 0
+     print "#{name} died of disease !!! Game Over!"
   elsif pet.eat <= 0
-      pet.eat = 0
+        pet.eat = 0
         print "#{name} died of hunger !!! Game Over!"
   elsif pet.sleep <= 0
-      pet.sleep = 0
+        pet.sleep = 0
         print "#{name} died of sleeplessness !!! Game Over!"
   elsif pet.play <= 0
-      pet.play = 0
+        pet.play = 0
         print "#{name} died of boredom !!! Game Over!"
 end
  
@@ -94,7 +94,7 @@ puts "\nHealth\t#{pet.health}\nEat\t\t#{pet.eat}\nSleep\t#{pet.sleep}\nPlay\t\t#
   
   end  while pet.health > 0 && pet.eat > 0 && pet.sleep > 0 && pet.play > 0
      
-          #       
-          # break        
+    #       
+    # break        
   end 
 end
