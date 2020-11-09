@@ -1,5 +1,5 @@
 class Pet
-  attr_reader(:health, :fun, :energy)
+  attr_accessor :health, :fun, :energy
 
   def initialize
     @health = 10
