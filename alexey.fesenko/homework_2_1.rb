@@ -16,10 +16,10 @@ class Tamagochi
     @energy = rand(0..5)
     @gender = %w[male female].sample
 
-    if @gender == 'male'
-      @name = MALE_NAMES.sample
+    @name = if @gender == 'male'
+      MALE_NAMES.sample
     else
-      @name = FEMALE_NAMES.sample
+      FEMALE_NAMES.sample
     end
   end
 
