@@ -16,9 +16,9 @@ class Easy_number
 
   def display_array
     find_prime_number
-    (1..4).each do
+    (1..@prime_arr.size).each do
     p prime_arr
-    prime_arr.push(prime_arr.shift)
+    prime_arr.rotate!
     end
   end
 
