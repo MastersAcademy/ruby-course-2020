@@ -15,12 +15,7 @@ class Tamagochi
     @food = rand(0..5)
     @energy = rand(0..5)
     @gender = %w[male female].sample
-
-    @name = if @gender == 'male'
-      MALE_NAMES.sample
-    else
-      FEMALE_NAMES.sample
-    end
+    @name = @gender == 'male' ? MALE_NAMES.sample : FEMALE_NAMES.sample
   end
 
   def play
