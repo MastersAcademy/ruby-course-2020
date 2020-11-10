@@ -1,4 +1,6 @@
-class Easy_number
+class EasyNumber
+  attr_accessor :prime_arr, :bad_number
+  attr_reader :max_value
 
   def initialize (max_value)
     @max_value = max_value
@@ -21,16 +23,7 @@ class Easy_number
     prime_arr.rotate!
     end
   end
-
-  private
-  attr_accessor :prime_arr, :bad_number
-  attr_reader :max_value
-
 end
 
-
-prime_matrix = Easy_number.new(10)
+prime_matrix = EasyNumber.new(10)
 prime_matrix.display_array
-
-
-
