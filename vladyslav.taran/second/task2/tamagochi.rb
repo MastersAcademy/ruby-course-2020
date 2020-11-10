@@ -49,9 +49,9 @@ class Pet
   end
 
   def help
-    puts 'You can feed doggy - feed'
+    puts 'You can feed pet - feed'
     puts 'You can play with him - play'
-    puts 'Doggy can be put to sleep - go_to_sleep'
+    puts 'Pet can be put to sleep - go_to_sleep'
     puts 'You can walk with him - walk'
     puts 'You can check all his stats - status'
     puts 'Show all commands - help'
@@ -112,4 +112,5 @@ private
   end
 end
 
-pet = Pet.new('name') 
+pet = Pet.new('name')
+
