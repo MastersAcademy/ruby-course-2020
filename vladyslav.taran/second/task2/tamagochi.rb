@@ -1,100 +1,115 @@
 class Pet
- attr_accessor :name, :health, :eat, :play, :sleep
- 
-def initialize (name, health, eat, play, sleep )
+   
+  def initialize(name)
+    puts 'Enter name your pet: '
+    name = gets.chomp
     @name = name
-    @health = health  
-    @play = play
-    @sleep = sleep 
-    @eat = eat
+    @health = 80
+    @hunger= 79
+    @play = 75
+    @asleep = 55
+    puts "#{@name} was Born!"
+    user_interaction
+  end
+  
+  def feed
+    puts "#{@name} eats!"
+    @hunger += 5
+    @health += 3
+    @play += 3
+    @asleep -= 2
+    user_interaction
   end
 
-  #Ask pet's name
-  puts "Enter your pet's name: "
-  input = gets
-  name = input.chomp
-  puts "Hi! My name is #{name}!"
+  def go_to_sleep
+    puts "#{@name} went to sleep"
+    @hunger -= 2
+    @health += 3
+    @asleep += 5
+    @play -= 1
+    user_interaction
+  end
 
-pet = Pet.new(name, 100, 100, 100, 100)
-puts "\nHealth\t#{pet.health} | Eat\t#{pet.eat} | Sleep\t#{pet.sleep} | Play\t#{pet.play}"
-begin
-  print "--------------------------------------"
-  #After some time
-  puts "\n|Health\t#{pet.health -= rand(20)}|\n|Eat\t#{pet.eat -= rand(20)}|\n|Sleep\t#{pet.sleep -=rand(20)}|\n|Play\t#{pet.play -= rand(20)}|"
-  print "--------------------------------------"
-  #Select action 1, 2, 3 or 4
-  puts "\nWhat do we do?
-Press 1 - Go to doctor
-Press 2 - Feed
-Press 3 - Put to sleep
-Press 4 - Play
-Press Enter to do nothing..."
+  def play
+    puts "It's so much fun playing with #{@name}!"
+    @play += 3
+    @health += 1
+    @hunger -= 2
+    @asleep -= 1
+    user_interaction
+  end
 
-    if pet.health != 0
-  diya = gets.chomp().to_s
-    case diya
-      when "1"
-          if pet.health > 0
-            pet.health = 100
-          end
-        pet.eat -= rand(20)
-        pet.sleep -= rand(20)
-        pet.play -= rand(20)
-        print "#{name} being treated!"
-      when "2"
-        pet.health -= rand(20)
-          if pet.eat > 0
-            pet.eat = 100
-          end
-        pet.sleep -= rand(20)
-        pet.play -= rand(20)
-        print "#{name} eats!"
-      when "3"
-        pet.health -= rand(20)
-        pet.eat -= rand(20)
-           if pet.sleep > 0
-             pet.sleep = 100
-           end
-        pet.play -= rand(20)
-        print "#{name} is sleeping!"
-      when "4"
-        pet.health -= rand(20)
-        pet.eat -= rand(20)
-        pet.sleep -= rand(20)
-          if pet.play > 0
-            pet.play = 100
-          end
-        print "#{name} plays!"
-      when ""
-        pet.health -= rand(20)
-        pet.eat -= rand(20)
-        pet.sleep -= rand(20)
-        pet.play -= rand(20)
-    else
-      puts "You entered #{diya}, something wrong!"
-      print "Try again! "
-      next
+  def walk
+    puts "#{@name} walking!"
+    @health += 3
+    @play += 2
+    @asleep -= 1
+    @hunger -= 1
+    user_interaction
+  end
+
+  def help
+    puts 'You can feed doggy - feed'
+    puts 'You can play with him - play'
+    puts 'Doggy can be put to sleep - go_to_sleep'
+    puts 'You can walk with him - walk'
+    puts 'You can check all his stats - status'
+    puts 'Show all commands - help'
+    user_interaction
+  end
+
+  def status
+    puts "health = #{@health}"
+    puts "hunger = #{@hunger}"
+    puts "play = #{@play}"
+    puts "asleep = #{@asleep}"
+    user_interaction
+  end
+
+private
+
+  def user_interaction
+    time_passes
+    puts "What do you want to do with #{@name}:"
+    action = gets.chomp
+    action_router(action)
+  end
+
+  def action_router(action)
+    send(action)
+  rescue NoMethodError
+    puts 'Wrong command! Please, use help and try again'
+    user_interaction
+  end
+
+  def time_passes
+    @hunger += 5
+    @asleep -= 5
+    if @asleep < 20
+      puts "#{@name} wants to sleep"
+      @health -= 3
     end
 
-  if pet.health <= 0
-     pet.health = 0
-     print "#{name} died of disease !!! Game Over!"
-  elsif pet.eat <= 0
-        pet.eat = 0
-        print "#{name} died of hunger !!! Game Over!"
-  elsif pet.sleep <= 0
-        pet.sleep = 0
-        print "#{name} died of sleeplessness !!! Game Over!"
-  elsif pet.play <= 0
-        pet.play = 0
-        print "#{name} died of boredom !!! Game Over!"
+    if @hunger < 50
+      puts "#{@name} time to eat!"
+      @play -= 5
+      @health -= 3
+    end
+
+    if @health < 20
+      puts "#{@name} want's to take a walk!"
+      @health -= 5
+    end
+
+    if @play< 30
+      puts "#{@name} want's to play!"
+    end
+
+    if @hunger < 15 || @health < 15
+      puts "#{@name} died! Game Over!!!"
+      exit
+    end
+  end
 end
- 
-puts "\nHealth\t#{pet.health}\nEat\t\t#{pet.eat}\nSleep\t#{pet.sleep}\nPlay\t\t#{pet.play}"
-  
-  end  while pet.health > 0 && pet.eat > 0 && pet.sleep > 0 && pet.play > 0
-     
-    #       
-    # break        
-  end 
-end
+
+pet = Pet.new('name') 
