@@ -1,11 +1,14 @@
 require 'matrix'
 class PrimeNumbers
-  attr_reader :max_num
+  attr_reader :matrix
 
   def initialize(max_num)
     @num = max_num
-    @matrix = Matrix[]
+    @matrix = matrix
+    fill_matrix(primes)
   end
+
+  private
 
   def  primes
     array = []
@@ -28,8 +31,7 @@ class PrimeNumbers
       end
       count += 1
     end
-    puts @matrix
   end
 end
 test_matrix = PrimeNumbers.new(10)
-test_matrix.fill_matrix(test_matrix.primes)
+p test_matrix.matrix
