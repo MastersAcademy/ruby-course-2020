@@ -1,6 +1,6 @@
 class String
   def valid?
-    brackets = { "(" => ")", "<" => ">", "{" => "}", "[" => "]" }
+    brackets = { '(' => ')', '<' => '>', '{' => '}', '[' => ']' }
     brackets_stack = []
     each_char do |x|
       brackets_stack.push(x) if brackets.key?(x)
