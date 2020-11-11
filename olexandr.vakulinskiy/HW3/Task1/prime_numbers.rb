@@ -1,4 +1,24 @@
 require 'matrix'
+class  Matrix
+  def print_matrix
+    count = 0
+    c_size = self.column_size
+    self.each do |number|
+      if count < c_size - 1
+        print number.to_s + ', '
+        count += 1
+      else
+        print number.to_s + ' '
+        count += 1
+      end
+      if count == c_size
+        print "\n"
+        count = 0
+      end
+    end
+    end
+  end
+
 class PrimeNumbers
   attr_reader :matrix
 
@@ -23,13 +43,13 @@ class PrimeNumbers
     count = 0
     until count > rotation_count
       @matrix = if count.zero?
-        Matrix.rows(@matrix.to_a << row)
-      else
-        Matrix.rows(@matrix.to_a << row.rotate(count))
-      end
+                  Matrix.rows(@matrix.to_a << row)
+                else
+                  Matrix.rows(@matrix.to_a << row.rotate(count))
+                end
       count += 1
     end
   end
 end
-test_matrix = PrimeNumbers.new(10)
-p test_matrix.matrix
+prime_numbers = PrimeNumbers.new(10)
+prime_numbers.matrix.print_matrix
