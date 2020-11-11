@@ -53,7 +53,7 @@ class Tamagotchi
   end
 
   def dead?
-     true ? @health <= 0 : false
+    true ? @health <= 0 : false
   end
 
   def bad_news
