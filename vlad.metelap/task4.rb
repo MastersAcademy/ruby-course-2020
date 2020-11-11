@@ -4,7 +4,7 @@ class String
     string_arr = self.chars
     st = []
     string_arr.each do |ch|
-      if isClosedBracket?(ch)
+      if is_closed_bracket?(ch)
         if brackets_hash[ch] != st.pop
           return false
         end
@@ -17,11 +17,13 @@ class String
     # puts "#{st}"
   end
 
-  def isClosedBracket?(ch)
+  def is_closed_bracket?(ch)
     [")", "]", "}", ">"].include?(ch)
   end
 end
-puts "[({})]".valid?
-puts "{(})".valid? #=> false
-puts "{{[]".valid? #=> false
-puts "{[()]}".valid? #=> true
+
+puts "Test:"
+puts "[({})] - #{"[({})]".valid?}"
+puts "{(}) - #{"{(})".valid?}" #=> false
+puts "{{[] - #{"{{[]".valid?}" #=> false
+puts "{[()]} - #{"{[()]}".valid?}" #=> true

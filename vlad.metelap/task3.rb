@@ -69,7 +69,9 @@ while first_pet.is_alive do
   iteration += 1
   break if iteration > 20
 end
+
 if !first_pet.is_alive
+  puts ""
   puts "*************** Pet is dead! *****************"
   puts "Pet is dead! health: #{first_pet.health}  temperature: #{first_pet.temperature} alive: #{first_pet.is_alive}"
 end
