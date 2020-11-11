@@ -6,16 +6,13 @@ class PrimeNumbers
   end
 
   def output(max_value)
-    prime_numbers = (0..max_value).select { |num| is_prime?(num) }
-    prime_numbers.count.times do |i|
-      string = (prime_numbers[i...prime_numbers.count] + prime_numbers[0...i])
-      string.each do |i|
-        print "#{i} #{',' unless i == string.last} "
-      end
-      puts
+    p prime_numbers = (2..max_value).select { |num| is_prime?(num) }
+    (prime_numbers.size - 1).times do
+      p prime_numbers.push(prime_numbers.shift)
     end
   end
 end
 
 m = PrimeNumbers.new
 m.output(10)
+
