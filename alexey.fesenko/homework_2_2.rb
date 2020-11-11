@@ -1,5 +1,5 @@
 class String
-  BRACKETS_PAIRS = { '(' => ')', '{' => '}', '<' => '>', '[' => ']' }
+  BRACKETS_PAIRS = { '(' => ')', '{' => '}', '<' => '>', '[' => ']' }.freeze
 
   def valid?
     if self.length.odd?
