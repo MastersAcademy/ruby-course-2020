@@ -27,13 +27,13 @@ class Tamagotchi
   def feed
     check_health
     @hunger -= 1
-    puts 'You fed your pet.' unless @health == 0
+    puts 'You fed your pet.' unless @health.zero?
   end
 
   def drink
     check_health
     @thirst -= 1
-    puts 'You gave some water to your pet.' unless @health == 0
+    puts 'You gave some water to your pet.' unless @health.zero?
   end
 
   def play
@@ -41,7 +41,7 @@ class Tamagotchi
     @fatigue += 2
     @hunger += 1
     @thirst += 1
-    puts 'You played different games with your pet.' unless @health == 0
+    puts 'You played different games with your pet.' unless @health.zero?
   end
 
   def sleep
@@ -49,11 +49,11 @@ class Tamagotchi
     @fatigue -= 1
     @hunger += 2
     @thirst += 2
-    puts 'Your pet is sleeping now.' unless @health == 0
+    puts 'Your pet is sleeping now.' unless @health.zero?
   end
 
   def dead?
-    true ? @health <= 0 : false
+     true ? @health <= 0 : false
   end
 
   def bad_news
