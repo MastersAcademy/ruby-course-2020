@@ -24,39 +24,40 @@ class Tamagotchi
     end
   end
 
-  def feed(check)
+  def feed
     check_health
     @hunger -= 1
-    puts 'You fed your pet.' if check == false
+    puts 'You fed your pet.' unless @health == 0
   end
 
-  def drink(check)
+  def drink
     check_health
     @thirst -= 1
-    puts 'You gave some water to your pet.' if check == false
+    puts 'You gave some water to your pet.' unless @health == 0
   end
 
-  def play(check)
+  def play
     check_health
     @fatigue += 2
     @hunger += 1
     @thirst += 1
-    puts 'You played different games with your pet.' if check == false
+    puts 'You played different games with your pet.' unless @health == 0
   end
 
-  def sleep(check)
+  def sleep
     check_health
     @fatigue -= 1
     @hunger += 2
     @thirst += 2
-    puts 'Your pet is sleeping now.' if check == false
+    puts 'Your pet is sleeping now.' unless @health == 0
   end
 
   def dead?
-    if @health <= 0
-      puts 'Sorry, your pet is dead =('
-      true
-    end
+    true ? @health <= 0 : false
+  end
+
+  def bad_news
+    puts 'Sorry, your pet is dead =(' if dead?
   end
 
   def characteristics
@@ -93,13 +94,17 @@ loop do
 
   case input
   when 'feed'
-    pet.feed(pet.dead?)
+    pet.feed
+    pet.bad_news
   when 'drink'
-    pet.drink(pet.dead?)
+    pet.drink
+    pet.bad_news
   when 'play'
-    pet.play(pet.dead?)
+    pet.play
+    pet.bad_news
   when 'sleep'
-    pet.sleep(pet.dead?)
+    pet.sleep
+    pet.bad_news
   when 'exit'
     break
   else

@@ -13,9 +13,7 @@ class PrimeNumbers
   def primes
     array = []
     (1..@num).each do |number|
-      if (1..number).select { |d| (number % d).zero? } == [1, number]
-        array.push(number)
-      end
+      array.push(number) if (1..number).select { |d| (number % d).zero? } == [1, number]
     end
     array
   end
@@ -24,10 +22,10 @@ class PrimeNumbers
     rotation_count = row.size - 1
     count = 0
     until count > rotation_count
-      if count.zero?
-        @matrix = Matrix.rows(@matrix.to_a << row)
+      @matrix = if count.zero?
+        Matrix.rows(@matrix.to_a << row)
       else
-        @matrix = Matrix.rows(@matrix.to_a << row.rotate(count))
+        Matrix.rows(@matrix.to_a << row.rotate(count))
       end
       count += 1
     end
