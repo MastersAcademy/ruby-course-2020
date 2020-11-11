@@ -1,7 +1,7 @@
 class String
   def valid?
     brack = self.chars
-    hash = {"{" => "}", "[" => "]", "(" => ")", "<" => ">"}
+    hash = { '{' => '}', '[' => ']', '(' => ')', '<' => '>' }
     result = true
     if brack.size.even?
       while brack.size != 0
@@ -9,7 +9,7 @@ class String
           brack.shift && brack.pop
           result = true
         elsif hash[brack[0]].eql?(brack[1])
-          brack.shift && brack.shift
+          brack.shift(2)
           result = true
         else
           result = false
@@ -23,8 +23,8 @@ class String
   end
 end
 
-p "{()}".valid?
-p "(<)({)".valid?
-p "[".valid?
-p "(<>[{}])".valid?
+p '{()}'.valid?
+p '(<)({)'.valid?
+p ']'.valid?
+p '(<>[{}])'.valid?
 p '(){}<>[]'.valid?
