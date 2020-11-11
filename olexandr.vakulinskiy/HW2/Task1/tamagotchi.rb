@@ -78,6 +78,7 @@ pet = Tamagotchi.new(name)
 puts "Now you can have fun with your #{name}!"
 loop do
   break if pet.dead?
+
   pet.characteristics
   puts '-' * 60
   puts(<<-MENU)
@@ -105,5 +106,3 @@ loop do
     puts 'That is not valid command!'
   end
 end
-
-

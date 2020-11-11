@@ -10,7 +10,7 @@ class PrimeNumbers
 
   private
 
-  def  primes
+  def primes
     array = []
     (1..@num).each do |number|
       if (1..number).select { |d| (number % d).zero? } == [1, number]
