@@ -1,11 +1,11 @@
 def dup(arr)
   result = []
-  while arr.size != 0
+  while !arr.empty?
     str = arr.shift
     array = str.chars
     interim_result = []
     interim_result << array.shift
-    while array.size != 0
+    while !array.empty?
       if interim_result[-1].eql?(array[0])
         array.shift
       else
@@ -18,7 +18,7 @@ def dup(arr)
   p result
 end
 
-dup(['rrrrrrrruuuuubybyyyyyyyyyy','piccaninny','hubbubbubboo'])
+dup(%w[rrrrrrrruuuuubybyyyyyyyyyy, piccaninny, hubbubbubboo])
 dup(['rrrrrrrruuuuubybyyyyyyyyyy','piccaninny','hubbubbubboo']).eql?(['rubyby','picaniny','hubububo'])
 raise unless dup(['abracadabra','allottee','assessee']).eql?(['abracadabra','alote','asese'])
 raise unless dup(['kelless','keenness']).eql?(['keles','kenes'])
