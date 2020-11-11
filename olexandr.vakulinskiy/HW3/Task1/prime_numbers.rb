@@ -1,23 +1,22 @@
 require 'matrix'
-class  Matrix
+class Matrix
   def print_matrix
     count = 0
-    c_size = self.column_size
-    self.each do |number|
-      if count < c_size - 1
+    each do |number|
+      if count < column_size - 1
         print number.to_s + ', '
         count += 1
       else
         print number.to_s + ' '
         count += 1
       end
-      if count == c_size
+      if count == column_size
         print "\n"
         count = 0
       end
     end
-    end
   end
+end
 
 class PrimeNumbers
   attr_reader :matrix
