@@ -19,4 +19,4 @@ class ArrNumbers
   end
 end
 
-ArrNumbers.new(10).simple_num
+#ArrNumbers.new(10).simple_num
