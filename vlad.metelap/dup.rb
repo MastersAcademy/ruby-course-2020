@@ -1,18 +1,18 @@
-public
 def dup(array_str)
   array_str.map! do |str|
-    pred_char = ""
-    str_result = ""
+    pred_char = ''
+    str_result = ''
     str.chars.map do |char|
       if pred_char != char
         str_result += char
         pred_char = char
       end
     end
-    str = str_result
+    str_result
   end
 end
-array_str1 = dup(['qwwwwwwwweeeee','zadddvvrh'])
+
+array_str1 = dup(%w[ qwwwwwwwweeeee, zadddvvrh ])
 puts "Test: #{array_str1.inspect}"
 
 raise unless dup(['rrrrrrrruuuuubybyyyyyyyyyy','piccaninny','hubbubbubboo']).eql?(['rubyby','picaniny','hubububo'])
