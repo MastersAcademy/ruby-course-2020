@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def yes
   hash = {
     'Yes' => 23,
@@ -6,11 +8,11 @@ def yes
     5 => '234',
     yesss: :fg,
     try: 30,
-    key: 'some value', 
-    ' yesterday1 '=> 34,
-    ' yesteryear '=> 2014
+    key: 'some value',
+    ' yesterday1 ' => 34,
+    ' yesteryear ' => 2014
   }
-  p  hash.keys.count { |key| key.to_s.downcase.index("yes") == 0 }
+  p hash.keys.count { |key| key.to_s.downcase.index('yes').zero? }
 end
 
 yes
