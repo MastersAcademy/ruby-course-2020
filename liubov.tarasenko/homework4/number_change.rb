@@ -1,6 +1,6 @@
 def dashatize(num)  
-  return nil if num == nil
-  res = num.abs.to_s.each_char.map{|n| n.to_i.odd? ? n = ['-', n, '-'] : n}.flatten.join
+  return if num.nil?
+  res = num.abs.to_s.each_char.map { |n| n.to_i.odd? ? n = ['-', n, '-'] : n }.flatten.join
   res = res.chop if res.end_with?('-')
   res = res[1..-1] if res.start_with?('-')
   res.gsub!('--', '-')
