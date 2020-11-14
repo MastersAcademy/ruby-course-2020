@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 def fetch_groups(str)
-  str.strip!
+  str = str.strip
   n = 0
   groups = []
 
