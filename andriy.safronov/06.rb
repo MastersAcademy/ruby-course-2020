@@ -1,18 +1,14 @@
-def dashatize(t)
-  unless t.is_a? Integer
-  return t
-  end
-  k = t.to_s.split('').map {|x|
+def dashatize(tor)
+  return tor unless tor.is_a? Integer
+
+  k = tor.to_s.split('').map do |x|
   if x.to_i.odd?
-  "-" + x + "-"
+    '-' + x + '-'
   else
-  x
-  end }.join.gsub("--", "-")
-  if k[0]=="-"
-  k.slice!(0)
+    x
   end
-  if k[-1]=="-"
-  k.slice!(-1)
-  end
-k
+  end.join.gsub('--', '-')
+  k.slice!(0) if k[0]=='-'  
+  k.slice!(-1) if k[-1]=='-'  
+  k
 end
