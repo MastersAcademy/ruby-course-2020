@@ -12,10 +12,10 @@ class PrimeNumbers
     @matrix.each do |number|
       case
       when count < @matrix.column_size - 1
-        print "#{number.to_s}, "
+        print "#{number}, "
         count += 1
       when count == @matrix.column_size - 1
-        print "#{number.to_s} \n"
+        print "#{number} \n"
         count = 0
       end
     end
@@ -36,7 +36,7 @@ class PrimeNumbers
     count = 0
     mat_arr = @matrix.to_a
     until count > rotation_count
-      count.zero? ? @matrix = Matrix.rows(mat_arr << row) : @matrix = Matrix.rows(mat_arr << row.rotate(count))
+      @matrix = count.zero? ? Matrix.rows(mat_arr << row) : Matrix.rows(mat_arr << row.rotate(count))
       count += 1
     end
   end
