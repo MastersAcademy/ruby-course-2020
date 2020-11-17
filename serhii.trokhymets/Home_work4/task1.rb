@@ -1,5 +1,6 @@
 def dashatize(numbers)
   return if numbers.nil?
+
   result = numbers.abs.to_s.each_char.map do |n|
     if n.to_i.odd?
       "-#{n}-"
