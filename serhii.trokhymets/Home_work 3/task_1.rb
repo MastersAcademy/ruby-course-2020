@@ -15,7 +15,7 @@ class EasyNumber
 
   def display_array
     find_prime_number
-    (1..@prime_arr.size).each do
+    @prime_arr.each do
     p prime_arr
     prime_arr.rotate!
     end
@@ -24,5 +24,3 @@ end
 
 prime_matrix = EasyNumber.new(10)
 prime_matrix.display_array
-
-
