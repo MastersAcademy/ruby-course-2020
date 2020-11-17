@@ -10,12 +10,12 @@ class Dash
 
   private
 
-  def condition_for_last(c)
-    @output_str[-1] == '-' ? @output_str += c : @output_str += '-' + c
+  def condition_for_last(case_value)
+    @output_str += @output_str[-1] == '-' ? case_value : "-#{case_value}"
   end
 
-  def condition_for_other(c)
-    @output_str[-1] == '-' ? @output_str += c + '-' : @output_str += '-' + c + '-'
+  def condition_for_other(case_value)
+    @output_str += @output_str[-1] == '-' ? "#{case_value}-" : "-#{case_value}-"
   end
 
   def case_for_odd(c)
@@ -23,7 +23,7 @@ class Dash
     when @num[-1] && @num[0]
       @output_str = c
     when @num[0]
-      @output_str = c + '-'
+      @output_str = "#{c}-"
     when @num[-1]
       condition_for_last(c)
     else
