@@ -16,7 +16,7 @@ class MyClass
   end
 
   def check_prime(elem)
-    (2...elem).any? { |i| elem.%(i).zero? }
+    (2...elem).any? { |i| elem %(i).zero? }
   end
 
   def prime_numbers
