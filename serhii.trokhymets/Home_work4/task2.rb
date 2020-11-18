@@ -24,8 +24,8 @@ def loneliest(str)
       res << { char: e, sum: sum }
     end
   end
-    max = res.max_by { |h| h[:sum] }
-    res.select { |h| h[:sum] == max[:sum] }.map { |h| h[:char] }
+  max = res.max_by { |h| h[:sum] }
+  res.select { |h| h[:sum] == max[:sum] }.map { |h| h[:char] }
 end
 
 raise unless loneliest('a').sort.eql?(['a'])
