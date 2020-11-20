@@ -9,14 +9,14 @@ class WeatherCount
     date = CSV.read(@path)
     date.shift
     date.map! { |el| { date: Date.parse(el.first), number: el.last.to_i } }
-    month_groups = date.group_by { |h| h[:date].month }
+    date.group_by { |h| h[:date].month }
   end
 
   def count
     month_groups = parse
     month_groups.map do |month, temps|
       h = { month: month }
-      enum = temps.map { |h| h[:number] }
+      enum = temps.map { |hash| hash[:number] }
       h[:avg] = (enum.sum.to_f / temps.size).round(2)
       h[:max] = enum.max
       h[:min] = enum.min
