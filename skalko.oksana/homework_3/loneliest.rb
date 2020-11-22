@@ -1,19 +1,18 @@
 def loneliest(str)
   array_of_strings = array_of_strings(number_of_spaces(str.strip.chars))
   max = array_of_strings.map { |i| i.size}.max
-  array_of_strings.select { |i| i.size.eql?(max) }.join.chars.uniq
+  p array_of_strings.select { |i| i.size.eql?(max) }.join.chars.uniq
 end
 
 def number_of_spaces(array)
   a = 0
   new_array = []
-  while array.any?
-    if array[0].eql?(' ')
+  array.each do |i|
+    if i.eql?(' ')
       a += 1
-      array.shift
     else
       new_array << a
-      new_array << array.shift
+      new_array << i
       a = 0
     end
   end
