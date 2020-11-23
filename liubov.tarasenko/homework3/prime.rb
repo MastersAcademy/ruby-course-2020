@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class PrimeMatrix
   def initialize(max)
     @max = max
   end
-  
+
   def prime_arr
-    base = [2,3,5,7].select { |x| x <= @max }    
-    rest = (2..@max).reject { |x| base.any? { |b| x % b == 0 } }
+    base = [2, 3, 5, 7].select { |x| x <= @max }
+    rest = (2..@max).reject { |x| base.any? { |b| (x % b).zero? } }
     base + rest
   end
 
   def print_arr
-    puts calculate.map { |el| el.join(" ") }
+    puts calculate.map { |el| el.join(' ') }
   end
 
   def calculate

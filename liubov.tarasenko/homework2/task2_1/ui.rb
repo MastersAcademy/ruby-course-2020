@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'pet'
 require_relative 'console_beauty'
 
@@ -5,12 +7,12 @@ class Ui
   COMMANDS = %w[feed play water walk let_sleep status].freeze
   def start
     init_dog
-    
-    while true      
-      if @dog.is_dead? 
-        puts "i`m dying. i loved u. sorry. ".red
+
+    loop do
+      if @dog.is_dead?
+        puts 'i`m dying. i loved u. sorry. '.red
         break
-      end   
+      end
 
       command = enter_command
       case command
@@ -28,10 +30,10 @@ class Ui
         p @dog
       else
         p "sorry, i don't know this command: #{command}"
-      end 
+      end
     end
   end
-  
+
   def init_dog
     puts 'name? '.yellow
     name = gets.strip
@@ -44,7 +46,7 @@ class Ui
 
   def enter_command
     puts 'choose a command, please: '.green
-    puts COMMANDS    
+    puts COMMANDS
     command = gets.strip.downcase
   end
 end
