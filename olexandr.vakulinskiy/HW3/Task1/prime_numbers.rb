@@ -10,11 +10,10 @@ class PrimeNumbers
   def print_matrix
     count = 0
     @matrix.each do |number|
-      case
-      when count < @matrix.column_size - 1
+      if count < @matrix.column_size - 1
         print "#{number}, "
         count += 1
-      when count == @matrix.column_size - 1
+      elsif count == @matrix.column_size - 1
         print "#{number} \n"
         count = 0
       end
