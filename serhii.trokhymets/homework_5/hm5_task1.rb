@@ -30,7 +30,7 @@ hash_month_max
 hash_month_min
 
 CSV.open('hw5.csv', 'w') do |csv|
-  csv << %w[August September October November]
+  csv << %w[Month Month Month Month]
   csv << hash_month_aver.keys
   csv << hash_month_aver.values
   csv << hash_month_max.values
