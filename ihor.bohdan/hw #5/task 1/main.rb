@@ -29,5 +29,3 @@ class Operations
     end
   end
 end
-
-Operations.new('test.csv').output
