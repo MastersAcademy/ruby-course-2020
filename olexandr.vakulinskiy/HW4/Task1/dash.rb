@@ -18,27 +18,22 @@ class Dash
     @output_str += @output_str[-1] == '-' ? "#{case_value}-" : "-#{case_value}-"
   end
 
-  def case_for_odd(c)
-    case c
+  def case_for_odd(case_value)
+    case case_value
     when @num[-1] && @num[0]
-      @output_str = c
+      @output_str = case_value
     when @num[0]
-      @output_str = "#{c}-"
+      @output_str = "#{case_value}-"
     when @num[-1]
-      condition_for_last(c)
+      condition_for_last(case_value)
     else
-      condition_for_other(c)
+      condition_for_other(case_value)
     end
   end
 
   def add_dashes_case
     @num.each_char do |c|
-      case (c.to_i % 2).zero?
-      when false
-        case_for_odd(c)
-      when true
-        @output_str += c
-      end
+      (c.to_i % 2).zero? ? @output_str += c : case_for_odd(c)
     end
   end
 

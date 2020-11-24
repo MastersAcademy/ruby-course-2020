@@ -53,7 +53,7 @@ class Tamagotchi
   end
 
   def dead?
-    @health <= 0 ? true : false
+    @health <= 0
   end
 
   def bad_news
@@ -81,15 +81,7 @@ loop do
   break if pet.dead?
 
   pet.characteristics
-  puts '-' * 60
-  puts(<<-MENU)
-    You can feed your #{name} (enter 'feed').
-    You can get some water to your #{name} (enter 'drink').
-    You can play with your #{name} (enter play).
-    You can send your #{name} to sleep (enter sleep).
-    If you want to finish the program enter 'exit'
-  MENU
-  puts '-' * 60
+  menu
   input = gets.chomp.downcase
 
   case input
@@ -110,4 +102,17 @@ loop do
   else
     puts 'That is not valid command!'
   end
+
+  def menu
+    puts '-' * 60
+    puts(<<-MENU)
+    You can feed your #{name} (enter 'feed').
+    You can get some water to your #{name} (enter 'drink').
+    You can play with your #{name} (enter play).
+    You can send your #{name} to sleep (enter sleep).
+    If you want to finish the program enter 'exit'
+    MENU
+    puts '-' * 60
+  end
+
 end
