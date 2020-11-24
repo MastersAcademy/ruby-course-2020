@@ -90,10 +90,6 @@ def menu
   puts '-' * 60
 end
 
-def input_menu
-
-end
-
 loop do
   break if pet.dead?
 
