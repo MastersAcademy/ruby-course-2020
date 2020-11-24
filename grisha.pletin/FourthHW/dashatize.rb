@@ -1,7 +1,6 @@
 def dashatize(num)
-  if num.nil?
-    nil
-  else
+  return unless num
+
   str = []
   num.to_s.split(/([02468]+|[13579])/).each_with_index do |x,i|
     if i % 2 != 0
@@ -9,7 +8,6 @@ def dashatize(num)
     end
   end
   str.join('-')
-  end
 end
 
 raise unless dashatize(6815).eql?('68-1-5')
