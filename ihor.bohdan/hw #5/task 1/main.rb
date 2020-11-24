@@ -2,6 +2,8 @@
 
 require 'csv'
 
+HEADERS = %w[month-year avg max min].freeze
+
 class Operations
   def initialize(file)
     @file = file
@@ -10,8 +12,7 @@ class Operations
   end
 
   def output
-    CSV.open('output.csv', 'w') do |csv|
-      csv << %w[month avg max min]
+    CSV.open('output.csv', 'w', write_headers: true, headers: HEADERS) do |csv|
       @month_temp.map { |k, v| csv << [k, v.sum / v.size, v.max, v.min] }.to_s
     end
   end
@@ -19,13 +20,14 @@ class Operations
   private
 
   def csv
-    @csv ||= CSV.read(@file, headers: true)
+    @csv ||= CSV.read(@file, headers: true, converters: :all)
   end
 
   def parse
     csv.map do |row|
-      date = Date.parse row['date']
-      @month_temp[date.mon] += [row['degrees'].to_i]
+      @month_temp[row['date'].strftime('%m-%Y')] += [row['degrees']]
     end
   end
 end
+
+Operations.new('test.csv').output
