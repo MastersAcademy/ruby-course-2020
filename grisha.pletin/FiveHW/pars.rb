@@ -27,7 +27,6 @@ class FileReader
       @result.map { |k, v| csv << [k, v.sum / v.size, v.max, v.min] }.to_s
     end
   end
-
 end
 
 reader = FileReader.new('test.csv')
