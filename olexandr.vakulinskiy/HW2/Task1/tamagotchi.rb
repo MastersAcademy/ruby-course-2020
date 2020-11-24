@@ -77,6 +77,23 @@ name = gets.chomp
 pet = Tamagotchi.new(name)
 
 puts "Now you can have fun with your #{name}!"
+
+def menu
+  puts '-' * 60
+  puts(<<-MENU)
+    You can feed your #{name} (enter 'feed').
+    You can get some water to your #{name} (enter 'drink').
+    You can play with your #{name} (enter play).
+    You can send your #{name} to sleep (enter sleep).
+    If you want to finish the program enter 'exit'
+  MENU
+  puts '-' * 60
+end
+
+def input_menu
+
+end
+
 loop do
   break if pet.dead?
 
@@ -102,17 +119,4 @@ loop do
   else
     puts 'That is not valid command!'
   end
-
-  def menu
-    puts '-' * 60
-    puts(<<-MENU)
-    You can feed your #{name} (enter 'feed').
-    You can get some water to your #{name} (enter 'drink').
-    You can play with your #{name} (enter play).
-    You can send your #{name} to sleep (enter sleep).
-    If you want to finish the program enter 'exit'
-    MENU
-    puts '-' * 60
-  end
-
 end
