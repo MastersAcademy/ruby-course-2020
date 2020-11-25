@@ -1,7 +1,3 @@
-def space_size(str)
-  str.scan(/(\s)/).size
-end
-
 def loneliest(str)
   groups = str.strip.split(/(?=(\s*\w\s*))/)
   max = groups.map(&:length).max
