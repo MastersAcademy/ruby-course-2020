@@ -25,10 +25,6 @@ hash.each do |date, temp|
   hash_month_min[date] ||= temp.min
 end
 
-hash_month_aver
-hash_month_max
-hash_month_min
-
 CSV.open('hw5.csv', 'w') do |csv|
   csv << %w[Month Month Month Month]
   csv << hash_month_aver.keys

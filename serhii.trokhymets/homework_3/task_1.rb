@@ -9,7 +9,7 @@ class EasyNumber
 
   def find_prime_number
     (1..@max_value).each do |num|
-      prime_arr.push(num) if (1..num).select { |d| num % d == 0 } == [1, num]
+      prime_arr.push(num) if (1..num).select { |d| (num % d).zero? } == [1, num]
     end
   end
 
