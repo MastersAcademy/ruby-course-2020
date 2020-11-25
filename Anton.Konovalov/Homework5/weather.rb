@@ -14,7 +14,7 @@ class WeatherParse
   def parser
     parse = CSV.foreach(@filename, headers: true, converters: :all)
     parse.each do |row|
-      @data[row['date'].strftime("%m-%y")] += [row['degrees']]
+      @data[row['date'].strftime('%m-%y')] += [row['degrees']]
     end
   end
 
