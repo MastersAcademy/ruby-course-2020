@@ -1,7 +1,6 @@
 require 'csv'
 
 class Temperature
-
   def initialize
     new_file
     result
@@ -14,7 +13,7 @@ class Temperature
 
   def new_file
     CSV.open('result.csv', 'w', headers: true) do |csv|
-      csv << [ :month, :average, :max, :min ]
+      csv << %i[month average max min]
     end
   end
 
@@ -38,7 +37,7 @@ class Temperature
   def add_info_to_result(temp)
     result = []
     result << temp.pop
-    average = temp.sum.to_f/temp.size
+    average = temp.sum.to_f / temp.size
     result << average.round(1) << temp.max << temp.min
     CSV.open('result.csv', 'a') do |csv|
       csv << result
