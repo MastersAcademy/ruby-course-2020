@@ -1,49 +1,38 @@
 require 'csv'
 
+CSV_RESULT_FILENAME = 'output.csv'
+CSV_TIME_FORMAT = '%m-%Y'
+CSV_READ_OPTIONS = { headers: true, converters: :all }.freeze
+CSV_WRITE_OPTIONS = { write_headers: true, headers: %w[month average max min] }.freeze
+
 class Weather
+  attr_reader :file, :months, :csv
 
-  def initialize
-    new_file
-    result
+  def initialize(file)
+    @file = file
+    @months = Hash.new([])
+    @csv ||= CSV.read(file, CSV_READ_OPTIONS)
   end
 
-  def parse
-    csv = File.read('temperature.csv')
-    CSV.parse(csv, headers: true)
-  end
-
-  def new_file
-    CSV.open('result.csv', 'w', headers: true) do |csv|
-      csv << [ :month, :average, :max, :min ]
+  def output
+    CSV.open(CSV_RESULT_FILENAME, 'w', CSV_WRITE_OPTIONS) do |csv|
+      months.map { |k, v| csv << format_row(k, v) }.to_s
     end
   end
 
-  def result
-    all_temp_for_month = []
-    month = parse.by_row[0]['date'].split('-')[1]
-    parse.by_row.each do |line|
-      if month.eql?(line['date'].split('-')[1])
-        all_temp_for_month << line['degrees'].to_i
-      else
-        all_temp_for_month << month
-        month = line['date'].split('-')[1]
-        add_info_to_result(all_temp_for_month)
-        all_temp_for_month = [] << line['degrees'].to_i
-      end
+  def call
+    csv.map do |row|
+      months[row['date'].strftime(CSV_TIME_FORMAT)] += [row['degrees']]
     end
-    all_temp_for_month << month
-    add_info_to_result(all_temp_for_month)
   end
 
-  def add_info_to_result(temp)
-    result = []
-    result << temp.pop
-    average = temp.sum.to_f/temp.size
-    result << average.round(1) << temp.max << temp.min
-    CSV.open('result.csv', 'a') do |csv|
-      csv << result
-    end
+  private
+
+  def format_row(key, value)
+    [key, value.sum / value.size, value.max, value.min]
   end
 end
 
-Weather.new
+operation = Weather.new('./temperature.csv')
+operation.call
+operation.output
