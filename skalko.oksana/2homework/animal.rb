@@ -59,11 +59,12 @@ class Raccoon
 
   def check(attribute)
     if attribute > 100
-      attribute = 100
-    elsif attribute < 0
-      attribute = 0
+      100
+    elsif attribute.negative?
+      0
+    else
+      attribute
     end
-    attribute
   end
 end
 

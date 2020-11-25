@@ -1,25 +1,8 @@
-def dup(arr)
-  result = []
-  while !arr.empty?
-    str = arr.shift
-    array = str.chars
-    interim_result = []
-    interim_result << array.shift
-    while !array.empty?
-      if interim_result[-1].eql?(array[0])
-        array.shift
-      else
-        interim_result << array.shift
-      end
-    end
-    result_string = interim_result.join
-    result << result_string
-  end
-  p result
+def dup(array)
+  array.map! { |x| x.chars.chunk(&:itself).map(&:first).join }
 end
 
-dup(%w[rrrrrrrruuuuubybyyyyyyyyyy, piccaninny, hubbubbubboo])
-dup(['rrrrrrrruuuuubybyyyyyyyyyy','piccaninny','hubbubbubboo']).eql?(['rubyby','picaniny','hubububo'])
+raise unless dup(['rrrrrrrruuuuubybyyyyyyyyyy','piccaninny','hubbubbubboo']).eql?(['rubyby','picaniny','hubububo'])
 raise unless dup(['abracadabra','allottee','assessee']).eql?(['abracadabra','alote','asese'])
 raise unless dup(['kelless','keenness']).eql?(['keles','kenes'])
 raise unless dup(['Woolloomooloo','flooddoorroommoonlighters','chuchchi']).eql?(['Wolomolo','flodoromonlighters','chuchchi'])
