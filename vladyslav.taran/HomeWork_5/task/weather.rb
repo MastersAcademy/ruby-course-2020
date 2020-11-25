@@ -1,6 +1,6 @@
 require 'csv'
 
-CSV_RESULT_FILENAME = 'output.csv'
+CSV_RESULT_FILENAME = 'output.csv'.freeze
 CSV_TIME_FORMAT = '%m-%Y'.freeze
 CSV_READ_OPTIONS = { headers: true, converters: :all }.freeze
 CSV_WRITE_OPTIONS = { write_headers: true, headers: %w[month average max min] }.freeze
