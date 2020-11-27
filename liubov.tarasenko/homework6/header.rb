@@ -10,4 +10,4 @@ class Header < Document
   end
 end
 
-headers = Header.new('/home/luba/projects/ruby-course-2020/liubov.tarasenko/homework6/test_htmls/index.html').parse
+Header.new('/home/luba/projects/ruby-course-2020/liubov.tarasenko/homework6/test_htmls/index.html').parse
