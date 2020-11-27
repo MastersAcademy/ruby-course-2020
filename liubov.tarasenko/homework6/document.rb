@@ -8,7 +8,6 @@ class Document
 
   def parse
     content = File.read(@file_path)
-    @doc = Nokogiri::HTML(content)  
+    @doc = Nokogiri::HTML(content)
   end
-
 end

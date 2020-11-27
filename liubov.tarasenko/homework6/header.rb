@@ -1,16 +1,10 @@
-require_relative "document"
+require_relative 'document'
 require 'nokogiri'
 class Header < Document
-
   def parse
     super
     trimmed_content = []
-    trimmed_content << @doc.css('h1').to_xhtml
-    trimmed_content << @doc.css('h2').to_xhtml
-    trimmed_content << @doc.css('h3').to_xhtml
-    trimmed_content << @doc.css('h4').to_xhtml
-    trimmed_content << @doc.css('h5').to_xhtml
-    trimmed_content << @doc.css('h6').to_xhtml
+    %w[h1 h2 h3 h4 h5 h6].each { |el| trimmed_content << @doc.css(el).to_xhtml }
     trimmed_content.delete_if { |el| el == '' }
     p trimmed_content
   end
