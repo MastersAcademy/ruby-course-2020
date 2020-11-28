@@ -5,14 +5,14 @@ require 'open-uri'
 
 class Document
   def parse
-    @doc = Nokogiri::HTML(URI.open('https://nokogiri.org/tutorials/installing_nokogiri.html'))
+    @doc = Nokogiri::HTML(URI.open('./my_page.html'))
   end
 end
 
 class Header < Document
   def parse
     super
-    @doc.css('h2').map(&:text).join(' ')
+    @doc.css('h2').map(&:text).join("\n")
   end
 end
 
