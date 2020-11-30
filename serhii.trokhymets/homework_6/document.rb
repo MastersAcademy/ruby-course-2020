@@ -12,4 +12,3 @@ class Document
     @doc = Nokogiri::HTML(content)
   end
 end
-
