@@ -9,5 +9,5 @@ class Link < Document
   end
 end
 
-link = Link.new
+link = Link.new('/Users/sergejtrohimec/Documents/GitHub/ruby-course-2020/serhii.trokhymets/homework_6/File.html')
 link.parse
