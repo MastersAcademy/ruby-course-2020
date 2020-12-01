@@ -3,7 +3,7 @@ require 'nokogiri'
 class Header < Document
   def parse
     super
-      puts @doc.css('h1, h2, h3, h4, h5, h6').map(&:to_xhtml)   
+    puts @doc.css('h1, h2, h3, h4, h5, h6').map(&:to_xhtml)
   end
 end
 
