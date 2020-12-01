@@ -6,17 +6,16 @@ File.read(filename)
 
 class Document
   def self.parse(html)
-    html
     Nokogiri::HTML.parse(html).css(self::TAG_NAME)
   end
 end
 
 class Link < Document
-  TAG_NAME = "a"
+  TAG_NAME = 'a'
 end
 
 class Header < Document
-  TAG_NAME = "h2"
+  TAG_NAME = 'h2'
 end
 
 puts Header.parse(html)
