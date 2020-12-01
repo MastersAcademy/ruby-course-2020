@@ -3,10 +3,7 @@ require 'nokogiri'
 class Header < Document
   def parse
     super
-    trimmed_content = []
-    %w[h1 h2 h3 h4 h5 h6].each { |el| trimmed_content << @doc.css(el).to_xhtml }
-    trimmed_content.delete_if { |el| el == '' }
-    p trimmed_content
+      puts @doc.css('h1, h2, h3, h4, h5, h6').map(&:to_xhtml)   
   end
 end
 

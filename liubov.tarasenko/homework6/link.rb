@@ -3,8 +3,7 @@ require 'nokogiri'
 class Link < Document
   def parse
     super
-    trimmed_content = @doc.css('a').to_xhtml
-    p trimmed_content
+    puts @doc.css('a').map(&:to_xhtml)
   end
 end
 
