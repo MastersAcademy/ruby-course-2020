@@ -11,11 +11,11 @@ class Document
 end
 
 class Link < Document
-  TAG_NAME = 'a'
+  TAG_NAME = 'a'.freeze
 end
 
 class Header < Document
-  TAG_NAME = 'h2'
+  TAG_NAME = 'h2'.freeze
 end
 
 puts Header.parse(html)
