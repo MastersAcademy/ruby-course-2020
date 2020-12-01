@@ -5,7 +5,7 @@ require './document'
 class Header < Document
   def parse
     super
-    puts @doc.css('h1, h2, h3, h4, h5, h6').map { |h| h.text.strip }
+    puts(@doc.css('h1, h2, h3, h4, h5, h6').map { |h| h.text.strip })
   end
 end
 
