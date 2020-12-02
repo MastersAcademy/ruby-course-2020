@@ -1,6 +1,6 @@
 require 'nokogiri'
 require './document'
-require './link.rb'
+require './link'
 require './header'
 
 link = Link.new
