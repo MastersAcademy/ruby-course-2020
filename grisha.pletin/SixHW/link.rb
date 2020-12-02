@@ -1,5 +1,5 @@
 
-require './HTMLparse'
+require './html_parse'
 
 class Link < Document
   def parse
