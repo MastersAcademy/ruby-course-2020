@@ -1,4 +1,3 @@
-
 require './html_parse'
 
 class Link < Document

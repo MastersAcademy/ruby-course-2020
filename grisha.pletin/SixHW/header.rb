@@ -1,5 +1,4 @@
-
-require './HTMLparse'
+require './html_parse'
 
 class Header < Document
   def parse
@@ -10,7 +9,6 @@ class Header < Document
     p '*********************************************************'
   end
 end
-
 
 @header = Header.new
 @header.parse
