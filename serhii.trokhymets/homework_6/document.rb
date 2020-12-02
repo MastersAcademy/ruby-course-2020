@@ -3,7 +3,7 @@
 require 'nokogiri'
 
 class Document
-  attr_accessor :doc
+  attr_reader :doc
 
   def initialize(path)
     @path = path
