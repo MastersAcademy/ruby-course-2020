@@ -1,5 +1,5 @@
 require_relative 'document'
-require 'nokogiri'
+
 class Header < Document
   def parse
     super
