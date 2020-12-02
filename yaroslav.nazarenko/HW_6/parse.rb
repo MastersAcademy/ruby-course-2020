@@ -1,7 +1,7 @@
 require 'nokogiri'
-require './document.rb'
+require './document'
 require './link.rb'
-require './header.rb'
+require './header'
 
 link = Link.new
 header = Header.new
