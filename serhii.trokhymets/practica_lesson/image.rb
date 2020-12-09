@@ -10,7 +10,9 @@ class Image
     raise ArgumentError, "code #{result.status}" if result.status != 200
     raise TypeError, 'This not image' unless result.headers['content-type'].include? 'image'
 
-    File.open('image.png', 'wb') { |fp| fp.write(result.body) }
+    exp = result.headers['content-type'].split('/').last
+
+    File.open("image.#{exp}", 'wb') { |fp| fp.write(result.body) }
   end
 end
 image = Image.new
