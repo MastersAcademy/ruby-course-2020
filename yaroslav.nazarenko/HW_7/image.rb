@@ -12,15 +12,10 @@ class Image
 
     content_type = response.headers['content-type'].split('/')
 
-    if content_type[0] == 'image'
+    raise TypeError, 'Please use image url' unless content_type[0] == 'image'
 
-      File.open("./test.#{content_type[1]}", 'wb') do |file|
-        file.write(response.body)
-      end
-
-    else
-      raise TypeError, 'Please use image url' unless content_type[0] == 'image'
-      # raise TypeError, 'Please use image url'
+    File.open("./test.#{content_type[1]}", 'wb') do |file|
+      file.write(response.body)
     end
   end
 end
