@@ -1,30 +1,20 @@
 require 'faraday'
-require 'open-uri'
 
 class Image
-  def initialize; end
-
   def download(url)
-    begin
-      response = Faraday.get(url)
-      raise 'Wrong url' if response.status.to_s.split('')[0] == '4' || response.status.to_s.split('')[0] == '5'
-    rescue ArgumentError
-      puts 'Wrong numbers of arguments'
-    rescue TypeError
-      puts 'Wrong Type'
-    end
-    original_ext = url.split(//).last(4).join
+    response = Faraday.get(url)
+    original_extension = url.split(//).last(4).join
+    response_first_number = response.status.to_s.split('')[0]
 
-    open(url) do |img|
-      File.open("./download#{original_ext}", 'wb') do |f|
-        f.write(img.read)
-      end
-    end
+    raise TypeError, 'Wrong type' unless %w[jpeg .jpg .png].include?(original_extension)
+    raise ArgumentError, 'Wrong URL' if %w[4 5].include?(response_first_number)
+
+    File.open("./download#{original_extension}", 'wb') { |f| f.write(response.body) }
   end
 end
 
-img1 = Image.new
-img2 = Image.new
+hello = Image.new
+bicycle = Image.new
 
-img1.download('https://www.hello.com/img_/hello_logo_hero.png')
-img2.download('http://apikabu.ru/img_n/2012-04_4/zky.jpg')
+hello.download('https://www.hello.com/img_/hello_logo_hero.png')
+bicycle.download('http://apikabu.ru/img_n/2012-04_4/zky.jpg')
