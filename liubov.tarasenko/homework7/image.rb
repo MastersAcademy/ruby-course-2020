@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-
+require 'pry'
 require 'faraday'
+
 class Image
   def download(url)
     @url = url
@@ -8,7 +9,6 @@ class Image
     response = Faraday.get @url
     raise ArgumentError, "code #{response.status}" if response.status != 200
     raise TypeError, 'Not an image' unless typeCorrect?(response.headers['content-type'])
-
     img = response.body
     save(img, ext)
   end
@@ -23,3 +23,6 @@ class Image
 end
 
 i = Image.new.download('https://cdn.mos.cms.futurecdn.net/yL3oYd7H2FHDDXRXwjmbMf.jpg')
+# binding.pry
+# Image.new.download('https://google.com') --> ArgumentError: code 301
+# Image.new.download('https://github.com/lubo4kaTarasenko/RubyHW') --> TypeError: Not an image
