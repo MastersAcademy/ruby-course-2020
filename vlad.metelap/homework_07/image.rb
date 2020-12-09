@@ -20,5 +20,5 @@ class Image
 end
 
 url = 'https://lostisland.github.io/faraday/assets/img/logo.png'
-obj = Image.download(url)
+Image.download(url)
 # binding.pry
