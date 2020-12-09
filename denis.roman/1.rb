@@ -5,9 +5,9 @@ class Image
     response = Faraday.get url
     extension = response.headers['content-type'].split('/').last
     content_type = response.headers['content-type'].split('/').first
-    File.open("download.#{extension}", 'w') { |fp| fp.write(response.body) }
     raise TypeError, 'file is not an image' if content_type != 'image'
     raise ArgumentError, 'wrong url' if response.status.to_int.between?(400, 599)
+    File.open("download.#{extension}", 'w') { |fp| fp.write(response.body) }
   end
 end
 
