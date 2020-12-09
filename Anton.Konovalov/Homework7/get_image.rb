@@ -11,7 +11,7 @@ class Image
     raise ArgumentError, 'wrong response' unless response.success?
     raise TypeError, 'wrong format' unless format.include?('image')
 
-    exp = response.headers['content-type'].split('.')
+    exp = response.headers['content-type'].split('/')
 
     File.open("./download.#{exp}", 'w') { |file| file.write(response.body) }
   end
