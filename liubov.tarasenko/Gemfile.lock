@@ -1,13 +1,19 @@
 GEM
   specs:
+    faraday (1.1.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords
     mini_portile2 (2.4.0)
+    multipart-post (2.1.1)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    ruby2_keywords (0.0.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  faraday
   nokogiri
 
 BUNDLED WITH
