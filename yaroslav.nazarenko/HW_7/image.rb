@@ -1,22 +1,26 @@
+# frozen_string_literal: true
+
 require 'faraday'
 require 'pry'
 
+# class implements ability to download image from web
 class Image
   def download(url)
     response = Faraday.get url
 
-    return p 'wrong url' if response.status != 200
+    raise ArgumentError, 'wrong url' if response.status != 200
 
     content_type = response.headers['content-type'].split('/')
 
     if content_type[0] == 'image'
 
-      File.open("./test.#{content_type[1]}", "wb") do |file|
+      File.open("./test.#{content_type[1]}", 'wb') do |file|
         file.write(response.body)
       end
 
     else
-      p 'Please use image url'
+      raise TypeError, 'Please use image url' unless content_type[0] == 'image'
+      # raise TypeError, 'Please use image url'
     end
   end
 end
