@@ -15,7 +15,7 @@ class Image
   private
 
   def response_status_success?
-    raise ArgumentError "wrong url (status code: #{@response.status}" unless  @response.success?
+    raise ArgumentError "wrong url (status code: #{@response.status}" unless @response.success?
   end
 
   def response_image_type?
@@ -23,8 +23,8 @@ class Image
   end
 
   def new_file
-    File.open("download.#{@url.split('.')[-1]}", 'wb') { |fp| fp.write(@response.body) }
+    File.open("download.#{@response.headers['content-type'].split('/').last}", 'wb') { |fp| fp.write(@response.body) }
   end
 end
 
-Image.new('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToAd2vcSvKmjBu2KItmgGOKfcdAtN5aHt8yw&usqp=CAU').download
+Image.new('https://pustunchik.ua/uploads/radio/cache/83332d52c5446b6faaf7abcecfa97d51.png').download
