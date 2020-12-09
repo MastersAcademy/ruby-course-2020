@@ -4,13 +4,13 @@ require 'faraday'
 require 'pry'
 
 class Image
-
   def download(url)
     response = Faraday.get(url)
     format = response.headers['content-type']
 
     raise ArgumentError, 'wrong response' unless response.success?
-    raise TypeError, 'wrong format' unless format.split('.').eql? 'image' || 'png' || 'img'
+    raise TypeError, 'wrong format' unless format.include?('image')
+
     exp = response.headers['content-type'].split('.')
 
     File.open("./download.#{exp}", 'w') { |file| file.write(response.body) }
