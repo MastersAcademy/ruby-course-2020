@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Safe Navigation Operator (&amp;.) in Ruby – Georgi Mitrev</title>
+    <script type="text/javascript" async="" src="./index2_files/analytics.js"></script><script src="./index2_files/mwxhSveKXYN2ULF1MwpBjqOdbSc.js"></script><script src="./index2_files/js"></script><script src="./index2_files/YvaFjrLaWvov3IDzGvCF4_sV7Vo.js"></script><link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com/">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ruby 2.3 introduces the &amp;. operator which will make dealing with nils easier">
+    <meta name="robots" content="all">
+    <meta name="author" content="Georgi Mitrev">
+    
+    <meta name="keywords" content="ruby">
+    <link rel="canonical" href="https://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Georgi Mitrev" href="https://mitrev.net/feed.xml">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./index2_files/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href="./index2_files/css" rel="stylesheet" type="text/css">
+    <link href="./index2_files/css(1)" rel="stylesheet" type="text/css">
+    
+    
+      <link href="./index2_files/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Safe Navigation Operator (&amp;.) in Ruby">
+    <meta property="og:description" content="Personal blog of Georgi Mitrev">
+    <meta property="og:url" content="https://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/">
+    <meta property="og:site_name" content="Georgi Mitrev">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    
+        <meta name="twitter:site" content="@gmitrev">
+        <meta name="twitter:creator" content="@gmitrev">
+    
+    <meta name="twitter:title" content="The Safe Navigation Operator (&amp;.) in Ruby">
+    <meta name="twitter:description" content="Ruby 2.3 introduces the &amp;. operator which will make dealing with nils easier">
+    <meta name="twitter:url" content="https://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/">
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://mitrev.net/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://mitrev.net/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://mitrev.net/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://mitrev.net/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://mitrev.net/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://mitrev.net/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://mitrev.net/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://mitrev.net/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mitrev.net/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="https://mitrev.net/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://mitrev.net/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="https://mitrev.net/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="https://mitrev.net/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://mitrev.net/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="https://mitrev.net/favicon.ico">
+
+    
+
+    <script async="" data-website-id="94c87fb9-4e8e-471c-8e64-6460ece90b5a" defer="" src="./index2_files/umami.js"></script>
+<link rel="stylesheet" href="data:text/css;charset=utf-8;base64,Y2xvdWRmbGFyZS1hcHBbYXBwLWlkPSJhLWJldHRlci1icm93c2VyIl0gewogIGRpc3BsYXk6IGJsb2NrOwogIGJhY2tncm91bmQ6ICM0NTQ4NGQ7CiAgY29sb3I6ICNmZmY7CiAgbGluZS1oZWlnaHQ6IDEuNDU7CiAgcG9zaXRpb246IGZpeGVkOwogIHotaW5kZXg6IDkwMDAwMDAwOwogIHRvcDogMDsKICBsZWZ0OiAwOwogIHJpZ2h0OiAwOwogIHBhZGRpbmc6IC41ZW0gMWVtOwogIHRleHQtYWxpZ246IGNlbnRlcjsKICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lOwogICAgIC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7CiAgICAgIC1tcy11c2VyLXNlbGVjdDogbm9uZTsKICAgICAgICAgIHVzZXItc2VsZWN0OiBub25lOwp9CgpjbG91ZGZsYXJlLWFwcFthcHAtaWQ9ImEtYmV0dGVyLWJyb3dzZXIiXVtkYXRhLXZpc2liaWxpdHk9ImhpZGRlbiJdIHsKICBkaXNwbGF5OiBub25lOwp9CgpjbG91ZGZsYXJlLWFwcFthcHAtaWQ9ImEtYmV0dGVyLWJyb3dzZXIiXSBjbG91ZGZsYXJlLWFwcC1tZXNzYWdlIHsKICBkaXNwbGF5OiBibG9jazsKfQoKY2xvdWRmbGFyZS1hcHBbYXBwLWlkPSJhLWJldHRlci1icm93c2VyIl0gYSB7CiAgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7CiAgY29sb3I6ICNlYmViZjQ7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcC1pZD0iYS1iZXR0ZXItYnJvd3NlciJdIGE6aG92ZXIsCmNsb3VkZmxhcmUtYXBwW2FwcC1pZD0iYS1iZXR0ZXItYnJvd3NlciJdIGE6YWN0aXZlIHsKICBjb2xvcjogI2RiZGJlYjsKfQoKY2xvdWRmbGFyZS1hcHBbYXBwLWlkPSJhLWJldHRlci1icm93c2VyIl0gY2xvdWRmbGFyZS1hcHAtY2xvc2UgewogIGRpc3BsYXk6IGJsb2NrOwogIGN1cnNvcjogcG9pbnRlcjsKICBmb250LXNpemU6IDEuNWVtOwogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICByaWdodDogLjRlbTsKICB0b3A6IC4zNWVtOwogIGhlaWdodDogMWVtOwogIHdpZHRoOiAxZW07CiAgbGluZS1oZWlnaHQ6IDE7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcC1pZD0iYS1iZXR0ZXItYnJvd3NlciJdIGNsb3VkZmxhcmUtYXBwLWNsb3NlOmFjdGl2ZSB7CiAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KTsKICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgxcHgpOwp9CgpjbG91ZGZsYXJlLWFwcFthcHAtaWQ9ImEtYmV0dGVyLWJyb3dzZXIiXSBjbG91ZGZsYXJlLWFwcC1jbG9zZTpob3ZlciB7CiAgb3BhY2l0eTogLjllbTsKICBjb2xvcjogI2ZmZjsKfQo="><script type="text/javascript" async="" src="./index2_files/embed.js"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.2a0be1cac62547aa91037395a06bf8b3.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.2b6a730d7d5eff80032e6b2e3ff8cab6.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.7ce8b2d11ecfa0aa9e0fdce994b52842.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"></head>
+
+<body class="site animated fade-in-down">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="https://mitrev.net/" class="site-title">Georgi Mitrev</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a href="https://mitrev.net/projects/">Projects</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a href="https://mitrev.net/contact/">Contact</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a href="https://mitrev.net/about/">About</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="social-icons-right">
+    
+      <a class="fa fa-github" href="https://github.com/gmitrev"></a>
+    
+    
+    
+    
+    <a class="fa fa-rss" href="https://mitrev.net/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/gmitrev"></a>
+    
+    
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:gvmitrev@gmail.com"></a>
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="banner">
+  Check out my newest project for tracking portfolio performance,
+  <a target="_blank" href="https://stonksfolio.com/">Stonksfolio</a>.
+</div>
+<div class="post-header mb2">
+  <h1>The Safe Navigation Operator (&amp;.) in Ruby</h1>
+  <span class="post-meta">Nov 13, 2015</span><br>
+  
+  <span class="post-meta small">
+  
+    3 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>The most interesting addition to Ruby 2.3.0 is the Safe Navigation Operator(<code class="language-plaintext highlighter-rouge">&amp;.</code>). A similar
+operator has been present in C# and Groovy for a long time with a slightly different syntax - <code class="language-plaintext highlighter-rouge">?.</code>.
+So what does it do?</p>
+
+<h3 id="scenario">Scenario</h3>
+
+<p>Imagine you have an <code class="language-plaintext highlighter-rouge">account</code> that has an <code class="language-plaintext highlighter-rouge">owner</code> and you want to get the <code class="language-plaintext highlighter-rouge">owner</code>’s <code class="language-plaintext highlighter-rouge">address</code>. If
+you want to be safe and not risk a nil error, you would write something like the following:</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">account</span> <span class="o">&amp;&amp;</span> <span class="n">account</span><span class="p">.</span><span class="nf">owner</span> <span class="o">&amp;&amp;</span> <span class="n">account</span><span class="p">.</span><span class="nf">owner</span><span class="p">.</span><span class="nf">address</span>
+<span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This is really verbose and annoying to type. ActiveSupport includes the <code class="language-plaintext highlighter-rouge">try</code> method which has a
+similar behaviour (but with few key differences that will be discussed later):</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">account</span><span class="p">.</span><span class="nf">try</span><span class="p">(</span><span class="ss">:owner</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:address</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>It accomplishes the same thing - it either returns the address or <code class="language-plaintext highlighter-rouge">nil</code> if some value along the
+chain is <code class="language-plaintext highlighter-rouge">nil</code>. The first example may also return <code class="language-plaintext highlighter-rouge">false</code> if, for example, the <code class="language-plaintext highlighter-rouge">owner</code> is set to
+<code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<h3 id="using-the-safe-navigation-operator-">Using the safe navigation operator (&amp;.)</h3>
+
+<p>We can rewrite the previous example using the safe navigation operator:</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">account</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">owner</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">address</span>
+</code></pre></div></div>
+
+<p>The syntax is a bit awkward but I guess we will have to deal with it because it does make the code
+more compact.</p>
+
+<h3 id="more-examples">More examples</h3>
+
+<p>Let’s compare all three approaches in more detail.</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">account</span> <span class="o">=</span> <span class="no">Account</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">owner: </span><span class="kp">nil</span><span class="p">)</span> <span class="c1"># account without an owner</span>
+
+<span class="n">account</span><span class="p">.</span><span class="nf">owner</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; NoMethodError: undefined method `address' for nil:NilClass</span>
+
+<span class="n">account</span> <span class="o">&amp;&amp;</span> <span class="n">account</span><span class="p">.</span><span class="nf">owner</span> <span class="o">&amp;&amp;</span> <span class="n">account</span><span class="p">.</span><span class="nf">owner</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; nil</span>
+
+<span class="n">account</span><span class="p">.</span><span class="nf">try</span><span class="p">(</span><span class="ss">:owner</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:address</span><span class="p">)</span>
+<span class="c1"># =&gt; nil</span>
+
+<span class="n">account</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">owner</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; nil</span>
+</code></pre></div></div>
+
+<p>No surprises so far. What if <code class="language-plaintext highlighter-rouge">owner</code> is <code class="language-plaintext highlighter-rouge">false</code> (unlikely but not impossible in the exciting world
+of shitty code)?</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">account</span> <span class="o">=</span> <span class="no">Account</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">owner: </span><span class="kp">false</span><span class="p">)</span>
+
+<span class="n">account</span><span class="p">.</span><span class="nf">owner</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; NoMethodError: undefined method `address' for false:FalseClass `</span>
+
+<span class="n">account</span> <span class="o">&amp;&amp;</span> <span class="n">account</span><span class="p">.</span><span class="nf">owner</span> <span class="o">&amp;&amp;</span> <span class="n">account</span><span class="p">.</span><span class="nf">owner</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; false</span>
+
+<span class="n">account</span><span class="p">.</span><span class="nf">try</span><span class="p">(</span><span class="ss">:owner</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:address</span><span class="p">)</span>
+<span class="c1"># =&gt; nil</span>
+
+<span class="n">account</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">owner</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; undefined method `address' for false:FalseClass`</span>
+</code></pre></div></div>
+
+<p>Here comes the first surprise - the <code class="language-plaintext highlighter-rouge">&amp;.</code> syntax only skips <code class="language-plaintext highlighter-rouge">nil</code> but recognizes <code class="language-plaintext highlighter-rouge">false</code>! It is not
+exactly equivalent to the <code class="language-plaintext highlighter-rouge">s1 &amp;&amp; s1.s2 &amp;&amp; s1.s2.s3</code> syntax.</p>
+
+<p>What if the owner is present but doesn’t respond to <code class="language-plaintext highlighter-rouge">address</code>?</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">account</span> <span class="o">=</span> <span class="no">Account</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">owner: </span><span class="no">Object</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+
+<span class="n">account</span><span class="p">.</span><span class="nf">owner</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; NoMethodError: undefined method `address' for #&lt;Object:0x00559996b5bde8&gt;</span>
+
+<span class="n">account</span> <span class="o">&amp;&amp;</span> <span class="n">account</span><span class="p">.</span><span class="nf">owner</span> <span class="o">&amp;&amp;</span> <span class="n">account</span><span class="p">.</span><span class="nf">owner</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; NoMethodError: undefined method `address' for #&lt;Object:0x00559996b5bde8&gt;`</span>
+
+<span class="n">account</span><span class="p">.</span><span class="nf">try</span><span class="p">(</span><span class="ss">:owner</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:address</span><span class="p">)</span>
+<span class="c1"># =&gt; nil</span>
+
+<span class="n">account</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">owner</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">address</span>
+<span class="c1"># =&gt; NoMethodError: undefined method `address' for #&lt;Object:0x00559996b5bde8&gt;`</span>
+</code></pre></div></div>
+
+<p>Oops, the <code class="language-plaintext highlighter-rouge">try</code> method doesn’t check if the receiver responds to the given method. This is why
+it’s always better to use the stricter version of <code class="language-plaintext highlighter-rouge">try</code> - <code class="language-plaintext highlighter-rouge">try!</code>:</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">account</span><span class="p">.</span><span class="nf">try!</span><span class="p">(</span><span class="ss">:owner</span><span class="p">).</span><span class="nf">try!</span><span class="p">(</span><span class="ss">:address</span><span class="p">)</span>
+<span class="c1"># =&gt; NoMethodError: undefined method `address' for #&lt;Object:0x00559996b5bde8&gt;`</span>
+</code></pre></div></div>
+
+<h3 id="pitfalls">Pitfalls</h3>
+
+<s>Be careful when using the `&amp;.` operator and checking for `nil` values. Consider
+the following example:</s>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kp">nil</span><span class="p">.</span><span class="nf">nil?</span>
+<span class="c1"># =&gt; true</span>
+
+<span class="kp">nil</span><span class="p">?.</span><span class="nf">nil?</span>
+<span class="c1"># =&gt; false</span>
+
+<span class="kp">nil</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">nil?</span>
+<span class="c1"># =&gt; nil</span>
+</code></pre></div></div>
+
+<p>As Joeri Samson pointed out in the comments, this section is actually wrong - I mistakenly used
+<code class="language-plaintext highlighter-rouge">?.</code> instead of <code class="language-plaintext highlighter-rouge">&amp;.</code>. But I still think that the last example is confusing and <code class="language-plaintext highlighter-rouge">nil&amp;.nil?</code> should
+return <code class="language-plaintext highlighter-rouge">true</code>.</p>
+
+<h3 id="arraydig-and-hashdig">Array#dig and Hash#dig</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">#dig</code> method is, in my opinion, the most useful feature in this version. No longer do we have
+to write abominations like the following:</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">address</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:account</span><span class="p">].</span><span class="nf">try</span><span class="p">(</span><span class="ss">:[]</span><span class="p">,</span> <span class="ss">:owner</span><span class="p">).</span><span class="nf">try</span><span class="p">(</span><span class="ss">:[]</span><span class="p">,</span> <span class="ss">:address</span><span class="p">)</span>
+
+<span class="c1"># or</span>
+
+<span class="n">address</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:account</span><span class="p">].</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:owner</span><span class="p">)</span> <span class="p">{</span> <span class="p">{}</span> <span class="p">}.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:address</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We can now simply use <code class="language-plaintext highlighter-rouge">Hash#dig</code> and accomplish the same thing:</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">address</span> <span class="o">=</span> <span class="n">params</span><span class="p">.</span><span class="nf">dig</span><span class="p">(</span><span class="ss">:account</span><span class="p">,</span> <span class="ss">:owner</span><span class="p">,</span> <span class="ss">:address</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="final-words">Final words</h3>
+
+<p>I really dislike dealing with <code class="language-plaintext highlighter-rouge">nil</code> values in dynamic languages (check my previous posts) and think
+the addition of the safe operator and the <code class="language-plaintext highlighter-rouge">dig</code> methods are really neat.</p>
+
+</article>
+
+
+
+
+
+
+
+
+  <div id="disqus_thread"><iframe id="dsq-app6621" name="dsq-app6621" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./index2_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 5331px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'mitrev';
+    var disqus_identifier = '/ruby/2015/11/13/the-operator-in-ruby';
+    var disqus_title      = "The Safe Navigation Operator (&.) in Ruby";
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="https://mitrev.net/ruby/2019/12/27/rails-6-without-webpack/" class="post-link">
+        <h4 class="post-title">Yanking Webpacker out of Rails (6)</h4>
+        <p class="post-summary">How to use Rails without webpacker</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="https://mitrev.net/ruby/2015/08/28/benchmarking-ruby/" class="post-link">
+        <h4 class="post-title">Benchmarking Ruby</h4>
+        <p class="post-summary">How to benchmark ruby code and compare different solutions to a problem</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="https://mitrev.net/ruby/2015/06/07/the-null-object-pattern/" class="post-link">
+        <h4 class="post-title">The Null Object pattern</h4>
+        <p class="post-summary">A technique for dealing with certain nil errors</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="https://mitrev.net/rails/2015/04/19/rails-migration-generator-specifying-precision-and-scale/" class="post-link">
+        <h4 class="post-title">Rails migration generator - how to specify decimal precision and scale</h4>
+        <p class="post-summary"></p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="https://mitrev.net/meta/2015/04/06/hello-world/" class="post-link">
+        <h4 class="post-title">Hello World</h4>
+        <p class="post-summary">Every techie's first post</p>
+      </a>
+    </div>
+  
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+        2020 - Georgi Mitrev <br>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>.
+        Theme by <a href="http://johnotander.com/">John Otander</a>.<br>
+    </small>
+  </div>
+</footer>
+
+
+
+
+<iframe style="display: none;" src="./index2_files/saved_resource(1).html"></iframe></body></html>
