@@ -1,5 +1,4 @@
 class String
-
   def valid?
     brackets_hash = { ')' => '(', ']' => '[', '}' => '{', '>' => '<' }
     string_arr = chars

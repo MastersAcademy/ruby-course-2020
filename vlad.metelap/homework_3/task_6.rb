@@ -4,7 +4,6 @@ class Task6
   def initialize(max_num)
     @max_num = max_num
   end
-
   def simple_numbers
     lst = []
     k = 0
@@ -23,7 +22,6 @@ class Task6
     end
     lst
   end
-
   def final_matrix
     simple_arr = simple_numbers
     p simple_arr
@@ -33,8 +31,5 @@ class Task6
     end
   end
 end
-
 matrix = Task6.new(10)
-# p matrix.simle_numbers
 matrix.final_matrix
-
