@@ -3,7 +3,7 @@ require 'faraday'
 class Image
   def download(url)
     response = Faraday.get(url)
-    p original_extension = response.headers['content-type'].split('/')
+    original_extension = response.headers['content-type'].split('/')
     response_first_number = response.status.to_s.split('')[0]
 
     raise TypeError, 'Wrong type' if original_extension[0] != 'image'
