@@ -6,13 +6,10 @@ require 'uri'
 
 class Image
   def download(url)
-    result = Faraday.get (url)
-    # raise ArgumentError, "code #{result.status}" if url =~URI::regexp
-    # raise ArgumentError.new('not an image') if response is not an image
-    # raise ArgumentError, 'Argument is not numeric' unless url =~URI::regexp
+    result = Faraday.get(url)
     raise ArgumentError, "code #{result.status}" if result.status != 200
+    raise TypeError, 'This not image' unless result.headers['content-type'].include? 'image'
 
-    # url =~ URI::regexp
     File.open('image.png', 'wb') { |fp| fp.write(result.body) }
   end
 end
