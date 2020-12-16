@@ -24,9 +24,7 @@ module Notification
     raise StandartError, 'Recipient is not correct' unless valid?(recipient)
   end
 
-  def valid?(recipient)
-    recipient.match?(/^\+\d{12}/) || recipient.match?(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/)
-  end
+  def valid?;  end
 
   module ClassMethods
     def log
