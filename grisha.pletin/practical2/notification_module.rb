@@ -24,13 +24,11 @@ module Notification
     raise StandartError, 'Recipient is not correct' unless valid?(recipient)
   end
 
-  def valid?;  end
+  def valid?; end
 
   module ClassMethods
     def log
-      File.open("#{name}.log", 'r') do |file|
-        puts file.read
-      end
+      puts File.read("#{name}.log")
     end
   end
 end
