@@ -16,5 +16,7 @@ module Notification
   def send_message(recepient)
     puts "Sending #{self.class.name} to #{recepient}"
     yield if block_given?
+    service = Service::Deliver.new
+    is_a?(Sms) ? service.sms(recepient) : service.email(recepient)
   end
 end
