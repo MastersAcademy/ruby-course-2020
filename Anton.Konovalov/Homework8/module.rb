@@ -9,11 +9,12 @@ module Notification
   VALID_PHONE_REGEX = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\z/.freeze
 
   class_methods do
-  def log
-    if name.eql? 'Email'
-      p File.read('email_log.txt')
-    else
-      p File.read('sms_log.txt')
+    def log
+      if name.eql? 'Email'
+        p File.read('email_log.txt')
+      else
+        p File.read('sms_log.txt')
+      end
     end
   end
 
@@ -45,6 +46,6 @@ end
 class Sms
   include Notification
 end
-end
+
 
 
