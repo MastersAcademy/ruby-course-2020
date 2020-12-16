@@ -1,14 +1,24 @@
-module Notification
-  def log(recepient, text)
-    output_file = File.open("./log.txt", "w") { |f| f.write "#{Time.now} - #{recepient} got an error\n" }
-  end
+# frozen_string_literal: true
 
-  def add_to_log(recepient)
-    recepient = nil
+module Notification
+  def self.included(base)
+    base.extend(ClassMethods)
   end
 
   def send_message(recepient)
-    recepient = nil
+    yield if block_given?
+    Service::Deliver.new.send(self.class.to_s.downcase, recepient)
   end
 
+  def add_to_log(recepient)
+    open("./#{self.class}.log", 'a') do |file|
+      file.write("#{Time.now} - #{recepient} got an error\n")
+    end
+  end
+
+  module ClassMethods
+    def log
+      open("./#{name}.log", 'r') { |f| puts f.read }
+    end
+  end
 end

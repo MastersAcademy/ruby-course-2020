@@ -1,16 +1,19 @@
+# frozen_string_literal: true
+
 class Email
-  extend Notification
-  def send(recepient)
-    unless is_a_valid_email?(recepient)
-      log(recepient, "#{Time.now} - #{recepient} got an error\n")
+  include Notification
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
+
+  def a_valid?(email)
+    email =~ VALID_EMAIL_REGEX
+  end
+
+  def deliver(recepient)
+    if a_valid?(recepient)
+      send_message(recepient)
+    else
+      add_to_log(recepient)
       raise ArgumentError, "Bad email format #{recepient}"
     end
-  rescue StandardError => e
-    puts e.message
-    puts e.backtrace.inspect
-  end
-  def is_a_valid_email?(email)
-    # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-    (email =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
   end
 end
