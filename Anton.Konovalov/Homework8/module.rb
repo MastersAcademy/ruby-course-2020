@@ -46,4 +46,5 @@ end
 class Sms
   include Notification
 end
-Email.new.send_message('example@gmail.com')
+
+Sms.new.send_message('0671234567')
