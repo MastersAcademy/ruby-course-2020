@@ -6,11 +6,14 @@ require 'active_support/concern'
 module Notification
   extend ActiveSupport::Concern
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  VALID_PHONE_REGEX = ^(?:\+?\d{1,3}[- ]?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{2}[- ]?\d{2}$
-  
+  VALID_PHONE_REGEX = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\z/
+
   class_methods do
     def log
-      puts(File.read("./#{name}.log"))
+      if name.eql? 'Email'
+        p File.read('email_log.txt')
+      else
+        p File.read('sms_log.txt')
     end
   end
 
@@ -21,25 +24,26 @@ module Notification
   end
 
   def send_message(recepient)
-    begin
-    raise 'wrong number' unless number.eql?
-    rescue self.add_to_log(ex)
+    if self.class.eql? Email
+    raise StandartError, 'wrong number' unless recepient.match(VALID_EMAIL_REGEX)
+    puts 'send email'
+  else
+    raise StandartError, 'wrong email format' unless recepient.match(VALID_PHONE_REGEX)
+    puts 'send sms'
+  end
 
-    raise 'wrong email format' unless
-    puts 'Sending Email to example@mail.com'
-    puts 'Sending SMS to +380671234567'
-    end
+  rescue StandartError => e
+    add_to_log(e)
   end
 end
 
-module Service
-  class Deliver
-    def sms(recepient)
-      puts "sms to #{recepient}"
-    end
 
-    def email(recepient)
-      puts "email to #{recepient}"
-    end
-  end
+class Email
+  include Notification
+end
+
+
+class Sms
+  include Notification
+end
 end
