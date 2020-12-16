@@ -32,18 +32,15 @@ module Notification
       raise StandartError, 'wrong email format' unless recepient.match(VALID_PHONE_REGEX)
       puts 'send sms'
     end
-  end
 
   rescue StandartError => e
     add_to_log(e)
   end
 end
 
-
 class Email
   include Notification
 end
-
 
 class Sms
   include Notification
