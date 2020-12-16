@@ -1,29 +1,16 @@
 module Notification
   def self.log
-    case name
-    when Email
-      File.read('email.log').split
-    when Sms
-      File.read('sms.log').split
-    end
+    File.read("#{name.downcase}.log").split
   end
 
   def add_to_log(recipient)
-    case self.class
-    when Email
-      File.open('email.log', 'wb') { |file| file.write recipient }
-    when Sms
-      File.open('sms.log', 'wb') { |file| file.write recipient }
-    end
+    class_name = self.class.name
+    File.open("#{class_name}.log", 'wb') { |file| file.write recipient }
   end
 
   def send_message(recipient)
-    case self.class
-    when Email
-      puts "Sending mail to #{recipient}"
-    when Sms
-      puts "Sending SMS to #{recipient}"
-    end
+    class_name = self.class.name
+    puts "Sending #{class_name.downcase} to #{recipient}"
   end
 end
 
@@ -41,7 +28,6 @@ class Email
 
     send_message(@recipient)
     add_to_log(@recipient)
-
   end
 end
 
@@ -58,14 +44,12 @@ class Sms
     raise ArgumentError, 'wrong number format' unless @recipient.match?(PHONE_NUMBER_REGEX)
 
     send_message(@recipient)
-
+    add_to_log(@recipient)
   end
 end
 
 my_email = Email.new('example@mail.com')
 my_email.notify
 
-
 my_sms = Sms.new('+380671234567')
 my_sms.notify
-
