@@ -26,15 +26,15 @@ module Notification
 
   def send_message(recepient)
     if self.class.instance_of?(Email)
-      raise StandartError, 'wrong number' unless recepient.match(VALID_EMAIL_REGEX)
+      raise StandardError, 'wrong number' unless recepient.match(VALID_EMAIL_REGEX)
 
       puts 'send email'
     else
-      raise StandartError, 'wrong email format' unless recepient.match(VALID_PHONE_REGEX)
+      raise StandardError, 'wrong email format' unless recepient.match(VALID_PHONE_REGEX)
 
       puts 'send sms'
     end
-  rescue StandartError => e
+  rescue StandardError => e
     add_to_log(e)
   end
 end
@@ -46,6 +46,4 @@ end
 class Sms
   include Notification
 end
-
-
-
+Email.new.send_message('example@gmail.com')
