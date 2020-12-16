@@ -1,5 +1,4 @@
 module Notification
-
   VALID_NUMBER = /^\+?3?8?(0[5-9][0-9]\d{7})$/.freeze
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
