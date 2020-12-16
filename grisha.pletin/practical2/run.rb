@@ -1,6 +1,5 @@
-require_relative 'sms.rb'
-require_relative 'email.rb'
-
+require_relative 'sms'
+require_relative 'email'
 
 Email.new.send_message('kek@mail.ru')
 Email.new.send_message('kekmail.ru')
