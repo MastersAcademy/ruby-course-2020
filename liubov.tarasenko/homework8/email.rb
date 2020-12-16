@@ -10,6 +10,7 @@ class Email
     if  valid?(recepient)
       send_message(recepient)  
     else
+      add_to_log(recepient)
       raise StandardError, "email is not valid" 
     end
   end

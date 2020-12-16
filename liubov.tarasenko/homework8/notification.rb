@@ -1,10 +1,14 @@
 module Notification
-  def self.log
-    puts ( File.read("./log"))
+  extend ActiveSupport::Concern
+
+  class_methods do
+    def log
+      puts ( File.read("./#{self.name.downcase}.log"))
+    end
   end
 
   def add_to_log(recepient)
-    File.open("./log", "a"){ | f |
+    File.open("./#{self.class.name.downcase}.log", "a"){ | f |
       f.puts("#{recepient}: got an error \n ")
     }
   end
