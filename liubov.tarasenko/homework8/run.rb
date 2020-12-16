@@ -1,4 +1,4 @@
-require "active_support/concern"
+require 'active_support/concern'
 require 'pry'
 
 require_relative 'notification'
