@@ -4,9 +4,17 @@ require './notification.rb'
 
 class Email
   include Notification
+
+  def sender(recepient)
+    email_regexp = /\A[^@\s]+@[^@\s]+\z/
+    if recepient.match(email_regexp)
+      send_message(recepient)
+    else
+      add_to_log(recepient)
+    end
+  end
 end
 send = Email.new
-send.send_message('380932072099')
-# send.send_message('0434')
-send.send_message('fefef')
-# send.send_message("SErhii@mail.com")
+send.sender('bla-bla-bla@mail.com')
+send_two = Email.new
+send_two.sender('rnueve9vv7')
