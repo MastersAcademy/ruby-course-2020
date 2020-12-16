@@ -5,6 +5,10 @@ require_relative 'notification'
 require_relative 'sms'
 require_relative 'email'
 
-sms = Sms.new
+email = Sms.new
+email.deliver('aaa@gmail.com')
+# sms.deliver('aaaaa_.com')
 
-binding.pry
+sms = Sms.new
+sms.deliver('(097)8888888')
+# sms.deliver('21873419')
