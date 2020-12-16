@@ -5,24 +5,24 @@ module Notification
 
   module ClassMethods
     def log
-      if self.name.eql? 'Sms'
-        p File.open("Sms.log", 'r') { |txt| txt.read }
+      if name.eql? 'Sms'
+        p File.read('Sms.log')
       else
-        p File.open("Email.log", 'r') { |txt| txt.read }
+        p File.read('Email.log')
       end
-      end
+    end
   end
 
   def add_to_log(recepient)
-    if self.class.eql? Sms
-      File.open("Sms.log", 'w') { |txt| txt.write(recepient) }
+    if self.instance_of?(Sms)
+      File.open('Sms.log', 'w') { |txt| txt.write(recepient) }
     else
-      File.open("Email.log", 'w') { |txt| txt.write(recepient) }
+      File.open('Email.log', 'w') { |txt| txt.write(recepient) }
     end
   end
 
   def send_message(recepient)
-    if self.class.eql? Sms
+    if self.instance_of?(Sms)
       raise ArgumentError, "#{recepient} wrong number" unless recepient.match(/^\+?3?8?(0[5-9][0-9]\d{7})$/)
       p "Sending SMS to #{recepient}"
     else
