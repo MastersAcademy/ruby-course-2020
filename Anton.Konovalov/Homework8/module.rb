@@ -18,8 +18,8 @@ module Notification
   end
 
   def add_to_log(recepient)
-    File.open("./#{self.class}.log", 'a') do |file|
-      file.write("#{recepient}: got an error \n ")
+    File.open("./#{self.class.name.downcase}.log", 'a') do |file|
+      file.puts("#{recepient}: got an error \n ")
     end
   end
 
@@ -45,4 +45,7 @@ end
 class Sms
   include Notification
 end
+end
+
+
 
