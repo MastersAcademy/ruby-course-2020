@@ -1,0 +1,18 @@
+================================================================================
+To interact with your creation, enter the commands that will be displayed below,
+enter only the command, quotation marks you do not need to enter.
+================================================================================
+1. Type "feed" if your pet need food.
+2. Type "play" to play and cheer him up.
+3. Type "sleeping" to put him to rest.
+4. Type "heal" if your seek.
+5. Type "speak" to find out how he is doing.
+6. Type "praise" if he did something for which he needed praise.
+7. Type "scold" if he did something wrong.
+8. Type "poop" even the creator needs to clean up for his creation :)
+9. Type "scratch" you can be allowed to scratch your neighbor :)
+10. Type "claws" sometimes claws are cut, no one likes it :(
+11. Type "kicked" accidentally hurt him.
+================================================================================
+Let's do it :) Start typing commands below:
+>
