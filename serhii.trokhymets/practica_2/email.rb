@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './notification.rb'
+require './notification'
 
 class Email
   include Notification

@@ -1,4 +1,4 @@
-require './notification.rb'
+require './notification'
 
 class Sms
   include Notification
