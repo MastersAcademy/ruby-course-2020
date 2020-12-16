@@ -1,1 +1,0 @@
-# Logfile created on 2020-12-16 20:13:32 +0200 by logger.rb/v1.4.2
