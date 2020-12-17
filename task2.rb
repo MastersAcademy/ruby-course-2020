@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 module Notification
-  def self.log
-    puts(File.read("./#{name.downcase}.loh"))
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+
+  module ClassMethods
+    def log
+      puts File.read("#{name.downcase}.log")
+    end
   end
 
   def send_message(recepient)
@@ -51,4 +57,5 @@ class Email
     end
   end
 end
-Email.new.send('romangmail.com')
+Email.new.send('roman@gmail.com')
+Email.log
