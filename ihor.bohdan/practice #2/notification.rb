@@ -26,6 +26,8 @@ end
 
 module ClassMethods
   def log
+    raise "file '#{name.downcase}.log' does not exist" unless File.exist?("./#{name.downcase}.log")
+
     puts IO.readlines("./#{name.downcase}.log")
   end
 end
