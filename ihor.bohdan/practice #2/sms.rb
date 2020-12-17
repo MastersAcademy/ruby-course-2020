@@ -1,4 +1,5 @@
-require './notification'
+require_relative 'notification'
+require_relative 'service'
 
 class Sms
   include Notification

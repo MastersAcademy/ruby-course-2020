@@ -18,6 +18,9 @@ module Notification
     abort(recipient) unless recipient =~ self.class.const_get('RECIPIENT_VALIDATION')
 
     puts "Sending #{self.class.name.downcase} to #{recipient}"
+    service = Service::Deliver.new
+    method_name = self.class.name.downcase
+    service.send(method_name, recipient)
   end
 end
 
