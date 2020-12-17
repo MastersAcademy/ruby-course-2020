@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
 require 'active_support/concern'
 
 module Notification
@@ -25,6 +24,7 @@ module Notification
   end
 
   def send_message(recepient)
+    yield if block_given?
     if self.class.instance_of?(Email)
       raise StandardError, 'wrong number' unless recepient.match(VALID_EMAIL_REGEX)
 
