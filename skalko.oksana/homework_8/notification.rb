@@ -8,23 +8,16 @@ module Notification
 
   module ClassMethods
     def log
-      if name.eql? 'Sms'
-        p File.read('Sms.log')
-      else
-        p File.read('Email.log')
-      end
+      p File.read("#{name}.log")
     end
   end
 
   def add_to_log(recepient)
-    if instance_of?(Sms)
-      File.open('Sms.log', 'w') { |txt| txt.write(recepient) }
-    else
-      File.open('Email.log', 'w') { |txt| txt.write(recepient) }
-    end
+    File.open("#{self.class}.log", 'w') { |txt| txt.write(recepient) }
   end
 
   def send_message(recepient)
+    yield if block_given?
     if instance_of?(Sms)
       raise ArgumentError, "#{recepient} wrong number" unless recepient.match(VALID_NUMBER)
 
