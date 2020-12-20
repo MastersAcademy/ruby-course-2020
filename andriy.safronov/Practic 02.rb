@@ -1,5 +1,4 @@
 module Notification
-  
   module ClassMetods
     def log
       File.read("#{name.downcase}.log")
@@ -17,29 +16,23 @@ module Notification
   end
 
   def send_message(recepient)
+    begin
+      raise "wrong #{self.class.name.downcase} format"
+    rescue => error
+      add_to_log(error.message)
+    end
     puts "Sending #{self.class.name} to #{recepient}"
+    yield if block_given? 
   end
 end
       
 class Email
-    include Notification
+  include Notification
 end
 
 class Sms
-    include Notification
+  include Notification
 end
-
-begin
-  raise "wrong email format"
-rescue => error
-    Email.new.add_to_log(error.message)
-end
-
-begin
-    raise "wrong sms format"
-  rescue => error
-      Sms.new.add_to_log(error.message)
-  end
 
 Email.new.send_message("example@mail.com")
 Sms.new.send_message("+380671234567")
