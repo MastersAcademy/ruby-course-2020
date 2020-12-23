@@ -3,12 +3,8 @@ module Notification
     base.extend(ClassMethod)
   end
 
-  def add_to_log(recipient, validator)
-    validator
-  rescue StandardError
-    recipient = "#{recipient} got an error\n"
-  ensure
-    File.open("#{self.class.name.downcase}.log", 'wb') { |file| file.write "#{recipient}\n" }
+  def add_to_log(recipient)
+    File.open("#{self.class.name.downcase}.log", 'a') { |file| file.write "#{recipient}\n" }
   end
 
   def send_message(recipient)
@@ -18,7 +14,7 @@ module Notification
 
   module ClassMethod
     def log
-      File.read("#{name.downcase}.log").split
+      File.read("#{name.downcase}.log").to_s
     end
   end
 end
@@ -30,6 +26,8 @@ class Email
 
   def email_validator
     raise StandardError, 'wrong email format' unless @recipient.match?(EMAIL_REGEX)
+  rescue StandardError
+    @recipient = "#{@recipient} got an error. Wrong email format"
   end
 
   def initialize(recipient)
@@ -38,7 +36,8 @@ class Email
 
   def notify
     send_message(@recipient)
-    add_to_log(@recipient, email_validator)
+    email_validator
+    add_to_log(@recipient)
   end
 end
 
@@ -49,6 +48,8 @@ class Sms
 
   def number_validator
     raise StandardError, 'wrong number format' unless @recipient.match?(PHONE_NUMBER_REGEX)
+  rescue StandardError
+    @recipient = "#{@recipient} got an error. Wrong number format"
   end
 
   def initialize(recipient)
@@ -57,22 +58,27 @@ class Sms
 
   def notify
     send_message(@recipient)
-    add_to_log(@recipient, number_validator)
+    number_validator
+    add_to_log(@recipient)
   end
 end
 
 my_email = Email.new('example@mail.com')
+my_email2 = Email.new('examplemail.com')
 my_email.notify
-puts <<-EMAIL_LOG
-  ------Email log------
+my_email2.notify
+print <<~SMS_LOG
+  --------Email log--------
   #{Email.log}
-  ---------------------
-EMAIL_LOG
+  -------------------------
+SMS_LOG
 
-my_sms = Sms.new('+380671234567')
+my_sms = Sms.new('380671234567')
+mys_sms2 = Sms.new('+380671234567')
 my_sms.notify
-print <<-SMS_LOG
-  ------Email log------
+mys_sms2.notify
+print <<~SMS_LOG
+  --------SMS log--------
   #{Sms.log}
-  ---------------------
+  -----------------------
 SMS_LOG
